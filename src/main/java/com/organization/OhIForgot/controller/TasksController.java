@@ -1,5 +1,5 @@
 package com.organization.OhIForgot.controller;
 
-public class ShowTasksController {
+public class TasksController {
 
 }
