@@ -2,6 +2,7 @@ package com.organization.OhIForgot.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 
 import com.organization.OhIForgot.model.Task;
 import com.organization.OhIForgot.service.TaskService;
@@ -16,49 +17,54 @@ public class TaskServiceImpl implements TaskService{
 	
 	@Override
 	public Task findTaskById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		for(Task task: tasks) {
+			if(id == task.getId()) {
+				return task; 
+			}
+		}
+		return null; 
 	}
 
-	@Override
-	public Task findTaskByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
-	public Long saveTask(Task task) {
-		// TODO Auto-generated method stub
-		return null;
+	public void saveTask(Task task) {
+		task.setId(++fakeId);
+		tasks.add(task);
+;		
 	}
 
 	@Override
 	public void updateTask(Task task) {
-		// TODO Auto-generated method stub
+		tasks.set(tasks.indexOf(task), task);
 		
 	}
 
 	@Override
 	public void deleteTask(int id) {
-		// TODO Auto-generated method stub
+		Iterator<Task> it = tasks.iterator();
+		while(it.hasNext()) {
+			Task task = it.next();
+			if(id == task.getId()) {
+				it.remove();
+			}
+		}
 		
 	}
 
 	@Override
 	public List<Task> listTasks() {
-		// TODO Auto-generated method stub
-		return null;
+		return tasks;
+		
 	}
 
-	@Override
-	public boolean isCompleted() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
 	private static List<Task> populateTasks(){
 		List<Task> tasks =new ArrayList<>();
-		return null; 
+		tasks.add(new Task(++fakeId, "Wash and dry clothes", "11/1/2022", true));
+		tasks.add(new Task(++fakeId, "Pick up dogfood", "11/8/2022", false));
+		tasks.add(new Task(++fakeId, "Study for exam", "11/3/2022", "11/20/2022", false));
+		
+		return tasks; 
 		
 	}
 }
