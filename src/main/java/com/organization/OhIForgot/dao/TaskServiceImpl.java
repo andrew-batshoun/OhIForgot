@@ -56,7 +56,11 @@ public class TaskServiceImpl implements TaskService{
 		return tasks;
 		
 	}
-
+	
+	@Override
+	public void isComplete(Task task, boolean bool) {
+		findTaskById(task.getId()).setCompleted(bool);
+	}
 	
 	private static List<Task> populateTasks(){
 		List<Task> tasks =new ArrayList<>();
