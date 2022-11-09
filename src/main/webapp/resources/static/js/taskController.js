@@ -1,5 +1,5 @@
 'use strict';
-angular.module('myApp').controller('ProductController', ['$scope', 'TaskService',function($scope, TaskService){
+angular.module('taskApp').controller('ProductController', ['$scope', 'TaskService',function($scope, TaskService){
 	var self = this;
 	self.task = {id: '', description:'', startDate:'', endDate:'', isCompleted:false};
 	self.tasks=[];

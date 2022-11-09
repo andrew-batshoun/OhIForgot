@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('myApp').factory('TaskService', ['$http', function($http){
+angular.module('taskApp').factory('TaskService', ['$http', function($http){
 	var REST_SERVICE_URI = '/task';
 	var factory = {
 		listTasks: listTasks,
