@@ -23,7 +23,7 @@ angular.module('myApp').controller('ProductController', ['$scope', 'TaskService'
 	}
 	
 	self.selectTask = function(selectedTask){
-		self.task = angular.copy(selectTask);
+		self.task = angular.copy(selectedTask);
 	}
 	
 	self.reset = function(){
