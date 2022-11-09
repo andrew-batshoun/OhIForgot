@@ -40,7 +40,7 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	@Override
-	public void deleteTask(int id) {
+	public void deleteTask(long id) {
 		Iterator<Task> it = tasks.iterator();
 		while(it.hasNext()) {
 			Task task = it.next();

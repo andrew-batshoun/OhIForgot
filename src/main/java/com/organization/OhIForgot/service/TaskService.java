@@ -9,7 +9,7 @@ public interface TaskService {
 	Task findTaskById(long id);
 	void saveTask(Task task);
 	void updateTask(Task task);
-	void deleteTask(int id);
+	void deleteTask(long id);
 	List<Task> listTasks();
 	void isComplete(Task task, boolean bool);
 	

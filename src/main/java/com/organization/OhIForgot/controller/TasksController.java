@@ -15,24 +15,21 @@ import org.springframework.web.servlet.ModelAndView;
 import com.organization.OhIForgot.model.Task;
 import com.organization.OhIForgot.service.TaskService;
 
+@RequestMapping(value ="/task")
 @Controller
 public class TasksController {
-	@Autowired
 	private TaskService taskService;
 	
-	@RequestMapping(value="/tasks", method = RequestMethod.GET)
-	public ModelAndView tasks() {
-		return new ModelAndView("tasksPage", "command", new Task());
-	}
-	
-	@RequestMapping(value="/task/create", method = RequestMethod.GET)
-	public ModelAndView createTask() {
-		return new ModelAndView("createTask", "command", new Task());
-	}
-	@RequestMapping(value="/task", method = RequestMethod.GET)
+	@RequestMapping(value="/tasklist", method = RequestMethod.GET)
 	public ResponseEntity<List<Task>> fetchTasks(){
 		return new ResponseEntity<List<Task>>(taskService.listTasks(), HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/create", method = RequestMethod.GET)
+	public ModelAndView createTask() {
+		return new ModelAndView("createTask", "command", new Task());
+	}
+	
 	
 	@RequestMapping(value = "/task", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> saveTask (@RequestBody Task task){
