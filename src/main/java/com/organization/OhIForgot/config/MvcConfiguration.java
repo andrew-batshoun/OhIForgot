@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @Configuration
-@ComponentScan(basePackages="com.organization.OhIForgot")
+//@ComponentScan(basePackages="com.organization.OhIForgot")
 @EnableWebMvc
 public class MvcConfiguration implements WebMvcConfigurer{
 

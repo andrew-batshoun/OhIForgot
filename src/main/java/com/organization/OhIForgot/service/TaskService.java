@@ -11,6 +11,6 @@ public interface TaskService {
 	void updateTask(Task task);
 	void deleteTask(long id);
 	List<Task> listTasks();
-	void isComplete(Task task, boolean bool);
+	
 	
 }

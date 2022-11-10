@@ -20,8 +20,6 @@
 		<tr>
 			<th>Task Id</th>
 			<th>Task Description</th>
-			<th>Task Start Date</th>
-			<th>isCompleted</th>
 			<th width="20%"></th>	
 		</tr>
 	</thead>
@@ -29,8 +27,8 @@
 		<tr ng-repeat="currentTask in ctrl.tasks">
 			<td><span ng-bind ="currentTask.id"></span></td>
 			<td><span ng-bind ="currentTask.description"></td>
-			<td><span ng-bind ="currentTask.startDate"></td>
-			<td><span ng-bind ="currentTask.isComplete"></td>
+			
+	
 		</tr>
 	</tbody>
 	</table>

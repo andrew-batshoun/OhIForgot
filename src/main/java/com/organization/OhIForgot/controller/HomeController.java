@@ -10,17 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.organization.OhIForgot.model.Task;
 
 @Controller
-@RequestMapping("/")
 public class HomeController {
 
-	@RequestMapping( method = RequestMethod.GET)
+	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String home() {
 		return "index";
-	}
-	
-	@RequestMapping(value="/tasks", method = RequestMethod.GET)
-	public ModelAndView tasks() {
-		return new ModelAndView("tasksPage", "command", new Task());
 	}
 	
 }

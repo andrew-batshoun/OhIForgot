@@ -1,12 +1,12 @@
 'use strict';
 angular.module('taskApp').controller('TasksController', ['TaskService',function(TaskService){
 	var self = this;
-	self.task = {id: '', description:'', startDate:'', endDate:'', isCompleted:false};
+	self.task = {id: '', description:''};
 	self.tasks=[];
 	
 	
 	self.listTasks = function(){
-		TaskService.listTasks().this(function(data){
+		TaskService.listTasks().then(function(data){
 			self.tasks = data;
 		},
 		function(errResponse){
@@ -15,31 +15,13 @@ angular.module('taskApp').controller('TasksController', ['TaskService',function(
 	}
 	
 	self.saveTask = function(task){
-		TaskService.saveTask(task).then(listTasks, function(errResponse){
+		return TaskService.saveTask(task).then(listTasks, function(errResponse){
 			console.error(errResponse +':Error while creating task');
+			self.listTasks();
 		});		
 	}
 	
-	self.updateTask = function(task, id){
-		TaskService.updateTask(task, id).then(listTasks, function(errResponse){
-			console.error(errResponse +':Error while fetching list');
-		});
-	}
-	
-	self.deleteTask = function(id){
-		TaskService.deleteTask(id).then(listTasks, function(errResponse){
-			console.error(errResponse +':Error while fetching list');
-		});
-	}
-	
-	self.selectTask = function(task){
-				self.task = angular.copy(task); 
-			}
-	
-	self.resetForm = function(){
-			  self.task = {};
 
-			}
 	self.listTasks();
 	
 }]);
