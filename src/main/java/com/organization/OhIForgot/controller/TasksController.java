@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.organization.OhIForgot.model.Task;
@@ -32,15 +33,9 @@ public class TasksController {
 		return new ResponseEntity<List<Task>>(taskService.listTasks(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/create", method = RequestMethod.GET)
-	public ModelAndView createTask() {
-		return new ModelAndView("createTask", "command", new Task());
-	}
-	
-	
-	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/tasks", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> saveTask (@RequestBody Task task){
 		taskService.saveTask(task);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 }

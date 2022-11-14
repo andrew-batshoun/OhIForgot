@@ -26,7 +26,9 @@ angular.module('taskApp').factory('TaskService', ['$http', '$q', function($http,
 	function saveTask(task) {
 		var deferred = $q.defer();
 		$http.post(REST_SERVICE_URI, task).then(function(response) {
+			console.log('Error creating task');
 			deferred.resolve(response.data);
+			
 		});
 		return deferred.promise;
 	}
