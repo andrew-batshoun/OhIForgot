@@ -11,9 +11,6 @@
         <li class="nav-item">
           <a class="nav-link" href="/tasks">Task List</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/create">Create Task</a>
-        </li>
       </ul>
     </div>
   </div>

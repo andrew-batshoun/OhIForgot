@@ -32,7 +32,7 @@
 									id="descript" class=" form-control input-sm"
 									placeholder="Enter a task description" required
 									ng-minlength="3" />
-								<div class="has-error" ng-show="taskForm.$dirty">
+								<div  ng-show="taskForm.$dirty">
 									<span ng-show="taskForm.descript.$error.required">This
 										is a required field</span> <span
 										ng-show="taskForm.descript.$error.minlength">Minimum
@@ -48,7 +48,6 @@
 						<div class="form-actions floatRight">
 							<input type="submit" class="btn btn-primary btn-sm"
 								ng-disabled="taskForm.$invalid">
-							<!--            <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button> -->
 						</div>
 					</div>
 				</form>

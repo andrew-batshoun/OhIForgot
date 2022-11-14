@@ -4,8 +4,9 @@ angular.module('taskApp').controller('TasksController', ['TaskService', function
 	self.task = { id: '', description: '' };
 	self.tasks = [];
 
-
-	self.listTasks = function() {
+	listTasks();
+	
+	function listTasks() {
 		TaskService.listTasks().then(function(data) {
 			self.tasks = data;
 		},
@@ -14,14 +15,14 @@ angular.module('taskApp').controller('TasksController', ['TaskService', function
 			});
 	}
 
-	self.saveTask = function(task) {
+	function saveTask(task) {
 		return TaskService.saveTask(task).then(listTasks, function(errResponse) {
 			console.error(errResponse + ':Error while creating task');
-			self.listTasks();
+			
 		});
 	}
 
 
-	self.listTasks();
+	
 
 }]);

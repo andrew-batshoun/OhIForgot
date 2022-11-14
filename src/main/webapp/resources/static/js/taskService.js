@@ -6,7 +6,7 @@ angular.module('taskApp').factory('TaskService', ['$http', '$q', function($http,
 
 	var factory = {
 		listTasks: listTasks,
-		saveTask: saveTask,
+		saveTask: saveTask
 	};
 
 	return factory;
