@@ -14,45 +14,9 @@
 <body ng-app="taskApp" class="ng-cloak">
 
 	<tag:navbar />
-	
-	<div class="container" ng-controller="TasksController as ctrl">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<span class="lead">Add a Task </span>
-			</div>
-			<div class="formcontainer">
-				<form ng-submit="ctrl.saveTask()" name="taskForm"
-					class="form-horizontal">
-					<input type="hidden" ng-model="ctrl.task.id" />
-					<div class="row">
-						<div class="form-group col-md-12">
-							<label class="col-md-2 control-lable" for="descript">Description</label>
-							<div class="col-md-7">
-								<input type="text" ng-model="ctrl.task.description"
-									id="descript" class=" form-control input-sm"
-									placeholder="Enter a task description" required
-									ng-minlength="3" />
-								<div  ng-show="taskForm.$dirty">
-									<span ng-show="taskForm.descript.$error.required">This
-										is a required field</span> <span
-										ng-show="taskForm.descript.$error.minlength">Minimum
-										length required is 3</span> <span
-										ng-show="taskForm.descript.$invalid">This field is
-										invalid </span>
-								</div>
-							</div>
-						</div>
-					</div>
 
-					<div class="row">
-						<div class="form-actions floatRight">
-							<input type="submit" class="btn btn-primary btn-sm"
-								ng-disabled="taskForm.$invalid">
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
+	<div class="container" ng-controller="TasksController as ctrl">
+
 		<div class="panel panel-default">
 			<div class="panel-Heading">
 				<span class="lead">List of Tasks</span>
@@ -61,7 +25,7 @@
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th>Task Id</th>
+							<th>Task #</th>
 							<th>Task Description</th>
 							<th width="20%"></th>
 						</tr>
@@ -70,12 +34,58 @@
 						<tr ng-repeat="currentTask in ctrl.tasks">
 							<td><span ng-bind="currentTask.id"></span></td>
 							<td><span ng-bind="currentTask.description"></td>
+							<td>
+								<button type="button" ng-click="ctrl.edit(currentTask.id)"
+									class="btn btn-success custom-width">Edit</button>
+								<button type="button" ng-click="ctrl.remove(currentTask.id)"
+									class="btn btn-danger custom-width">Remove</button>
+							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+			<input class="btn btn-primary" value="{{!ctrl.task.id ? 'Create New Task' : 'Update Task'}}" type="button"
+				data-bs-toggle="collapse" data-bs-target="#collapseCreateTask"
+				aria-expanded="false" aria-controls="collapseCreateTask">
+				
 		</div>
 
+		<div class="collapse" id="collapseCreateTask">
+			<div class="card card-body">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<span class="lead">Add a Task </span>
+					</div>
+					<div class="formcontainer">
+						<form ng-submit="ctrl.submit()" name="taskForm"
+							class="form-horizontal">
+							<input type="hidden" ng-model="ctrl.task.id" />
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label class="col-md-2 control-lable" for="description">Description</label>
+									<div class="col-md-7">
+										<input type="text" ng-model="ctrl.task.description"
+											id="description" class=" form-control input-sm"
+											placeholder="Enter a task description" required
+											ng-minlength="3" />
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="form-actions floatRight">
+									<input type="submit" value="{{!ctrl.task.id ? 'Add' : 'Update'}}"class="btn btn-primary btn-sm">
+									<button type="button" ng-click="ctrl.reset()"
+										class="btn btn-warning btn-sm"
+										ng-disabled="taskForm.$pristine">Reset</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
 	</div>
 
 

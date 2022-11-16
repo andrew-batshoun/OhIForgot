@@ -3,6 +3,7 @@ package com.organization.OhIForgot.dao;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import com.organization.OhIForgot.service.TaskService;
 
 @Service
 public class TaskServiceImpl implements TaskService{
-	private static Long fakeId = new Long(0);
+	private static AtomicLong fakeId = new AtomicLong();
 	private static List<Task> tasks = new ArrayList<Task>();
 	static {
 		tasks = populateTasks();	
@@ -20,17 +21,17 @@ public class TaskServiceImpl implements TaskService{
 	private static List<Task> populateTasks(){
 		
 		Task task1 = new Task(); 
-		task1.setId(++fakeId);
+		task1.setId(fakeId.incrementAndGet());
 		task1.setDescription("Wash and dry clothes");
 	
 		
 		Task task2 = new Task(); 
-		task2.setId(++fakeId);
+		task2.setId(fakeId.incrementAndGet());
 		task2.setDescription("Pick up dogfood");
 		
 		
 		Task task3 = new Task(); 
-		task3.setId(++fakeId);
+		task3.setId(fakeId.incrementAndGet());
 		task3.setDescription("Study for exam");
 		
 		tasks.add(task1);
@@ -48,7 +49,7 @@ public class TaskServiceImpl implements TaskService{
 	}
 	
 	@Override
-	public Task findTaskById(long id) {
+	public Task findTaskById(Long id) {
 		for(Task task: tasks) {
 			if(id == task.getId()) {
 				return task; 
@@ -60,19 +61,19 @@ public class TaskServiceImpl implements TaskService{
 
 	@Override
 	public void saveTask(Task task) {
-		task.setId(++fakeId);
+		task.setId(fakeId.incrementAndGet());
 		tasks.add(task);
-;		
+			
 	}
 
 	@Override
-	public void updateTask(Task task) {
+	public Task updateTask(Task task) {
 		tasks.set(tasks.indexOf(task), task);
-		
+		return task;
 	}
 
 	@Override
-	public void deleteTask(long id) {
+	public void deleteTask(Long id) {
 		Iterator<Task> it = tasks.iterator();
 		while(it.hasNext()) {
 			Task task = it.next();
@@ -84,10 +85,6 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	
-//	public static void main(String[] args) {
-//		
-//		
-//		System.out.println(tasks);
-//	}
+
 	
 }

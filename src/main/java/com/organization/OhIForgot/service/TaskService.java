@@ -6,10 +6,10 @@ import com.organization.OhIForgot.model.Task;
 
 public interface TaskService {
 	
-	Task findTaskById(long id);
+	Task findTaskById(Long id);
 	void saveTask(Task task);
-	void updateTask(Task task);
-	void deleteTask(long id);
+	Task updateTask(Task task);
+	void deleteTask(Long id);
 	List<Task> listTasks();
 	
 	

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.organization.OhIForgot.model.Task;
@@ -54,4 +53,38 @@ public class TasksController {
 		taskService.saveTask(task);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
+	
+	 @RequestMapping(value = "/tasks/{id}", method = RequestMethod.PUT)
+	    public ResponseEntity<Task> updateTask(@PathVariable("id") long id, @RequestBody Task task) {
+	        System.out.println("Updating task " + id);
+	          
+	        Task currentTask = taskService.findTaskById(id);
+	          
+	        if (currentTask==null) {
+	            System.out.println("Task with id " + id + " not found");
+	            return new ResponseEntity<Task>(HttpStatus.NOT_FOUND);
+	        }
+	  
+	        currentTask.setDescription(task.getDescription());
+	        
+	          
+	        taskService.updateTask(currentTask);
+	        return new ResponseEntity<Task>(currentTask, HttpStatus.OK);
+	    }
+	 
+	 @RequestMapping(value = "/tasks/{id}", method = RequestMethod.DELETE)
+	    public ResponseEntity<Task> deleteTask(@PathVariable("id") long id) {
+	        System.out.println("Retrieving & Deleting Task with id " + id);
+	  
+	        Task task = taskService.findTaskById(id);
+	        if (task == null) {
+	            System.out.println("Unable to delete. Task with id " + id + " not found");
+	            return new ResponseEntity<Task>(HttpStatus.NOT_FOUND);
+	        }
+	  
+	        taskService.deleteTask(id);
+	        return new ResponseEntity<Task>(HttpStatus.NO_CONTENT);
+	    }
+	 
+	 
 }
