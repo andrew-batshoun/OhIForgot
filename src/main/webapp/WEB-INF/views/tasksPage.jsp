@@ -81,7 +81,7 @@
 										<input type="text" ng-model="ctrl.task.description"
 											id="description" class=" form-control input-sm"
 											placeholder="Enter a task description" required
-											ng-minlength="3" />
+											 />
 									</div>
 								</div>
 							</div>
