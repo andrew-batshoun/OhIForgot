@@ -10,8 +10,9 @@
     </head>
     <body>
     <tag:navbar/>
-        <h1>Hello World!</h1>
+        <h1>Welcome ${message}</h1>
         <p>What did you forget?</p>
         <tag:footer/>
+        
     </body>
 </html>

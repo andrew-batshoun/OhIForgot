@@ -1,13 +1,8 @@
 <footer class="footer" style="margin-top: 175px">
 
 	<h3 class="mx-auto text-center"
-		style="width: 300px; color: darkred; font-size: medium">Oh I
-		Forgot</h3>
-	<div class="mx-auto text-center">
-		<i class="fa-brands fa-twitter"></i><i
-			class="fa-brands fa-facebook-square"></i><i
-			class="fa-brands fa-instagram"></i>
-	</div>
+		style="width: 300px; color: blue; font-size: medium">Oh I FORGOT</h3>
+	
 
 
 </footer>

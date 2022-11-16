@@ -1,7 +1,7 @@
 'use strict';
 angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService', function($scope, TaskService) {
 	var self = this;
-	self.task = { id: '', description: '' };
+	self.task = { id: '', description: '', dueDate: '' };
 	self.tasks = [];
 
 	self.submit = submit;
@@ -31,7 +31,7 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 			.then(
 				listTasks,
 				function(errResponse) {
-					console.error('Error while updating Task');
+					console.error(errResponse +'Error while updating Task');
 				}
 			);
 	}
@@ -79,8 +79,15 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 	}
 
 	function reset() {
-		self.task = { id: null, description: '' };
+		self.task = { id: null, description:'', dueDate: null };
 		$scope.taskForm.$setPristine();
+	}
+	
+	$scope.showMe = false;
+	
+	$scope.showRemove = function(){
+		$scope.showMe = $scope.checkSelected;
+		console.log("checked task id:" + self.task.id)
 	}
 
 

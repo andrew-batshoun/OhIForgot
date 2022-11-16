@@ -34,10 +34,10 @@ public class TasksController {
 
 	@RequestMapping(value = "/tasks/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Task> getTask(@PathVariable("id") long id) {
-		System.out.println("Fetching User with id " + id);
+		System.out.println("Fetching Task with id " + id);
 		Task task = taskService.findTaskById(id);
 		if (task == null) {
-			System.out.println("User with id " + id + " not found");
+			System.out.println("Task with id " + id + " not found");
 			return new ResponseEntity<Task>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Task>(task, HttpStatus.OK);
@@ -66,7 +66,8 @@ public class TasksController {
 	        }
 	  
 	        currentTask.setDescription(task.getDescription());
-	        
+	        currentTask.setDueDate(task.getDueDate());
+;	        
 	          
 	        taskService.updateTask(currentTask);
 	        return new ResponseEntity<Task>(currentTask, HttpStatus.OK);

@@ -15,7 +15,7 @@
 
 	<tag:navbar />
 
-	<div class="container" ng-controller="TasksController as ctrl">
+	<div class="container" ng-controller="TasksController as ctrl" style="margin: 1em">
 
 		<div class="panel panel-default">
 			<div class="panel-Heading">
@@ -27,35 +27,49 @@
 						<tr>
 							<th>Task #</th>
 							<th>Task Description</th>
+							<th>DueDate</th>
+							<th>Completed</th>
 							<th width="20%"></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="currentTask in ctrl.tasks">
 							<td><span ng-bind="currentTask.id"></span></td>
-							<td><span ng-bind="currentTask.description"></td>
+							<td><span ng-bind="currentTask.description"></span></td>
+							<td><span ng-bind="currentTask.dueDate"></span></td>
+							<td><input type="checkbox" ng-change="showRemove()"
+								ng-model="checkSelected"></td>
 							<td>
-								<button type="button" ng-click="ctrl.edit(currentTask.id)"
-									class="btn btn-success custom-width">Edit</button>
-								<button type="button" ng-click="ctrl.remove(currentTask.id)"
-									class="btn btn-danger custom-width">Remove</button>
+
+								<div ng-show="checkSelected">
+									<button type="button" ng-click="ctrl.remove(currentTask.id)"
+										class="btn btn-danger custom-width">Remove</button>
+								</div>
 							</td>
+							<td>
+								<div>
+									<button type="button" ng-click="ctrl.edit(currentTask.id)"
+										class="btn btn-success custom-width">Edit</button>
+								</div>
+
+							</td>
+
 						</tr>
 					</tbody>
 				</table>
 			</div>
-			<input class="btn btn-primary" value="{{!ctrl.task.id ? 'Create New Task' : 'Update Task'}}" type="button"
+			<input class="btn btn-primary"
+				value="{{!ctrl.task.id ? 'New Task' : 'Update Task'}}" type="button"
 				data-bs-toggle="collapse" data-bs-target="#collapseCreateTask"
 				aria-expanded="false" aria-controls="collapseCreateTask">
-				
+
 		</div>
 
 		<div class="collapse" id="collapseCreateTask">
 			<div class="card card-body">
 				<div class="panel panel-default">
-					<div class="panel-heading">
-						<span class="lead">Add a Task </span>
-					</div>
+
 					<div class="formcontainer">
 						<form ng-submit="ctrl.submit()" name="taskForm"
 							class="form-horizontal">
@@ -71,10 +85,23 @@
 									</div>
 								</div>
 							</div>
-
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label class="col-md-2 control-lable" for="date">Due
+										Date</label>
+									<div class="col-md-7">
+										<input type="text" ng-model="ctrl.task.dueDate" id="date"
+											class="form-control input-sm"
+											placeholder="Enter a due date. " />
+									</div>
+								</div>
+							</div>
+							<br>
 							<div class="row">
 								<div class="form-actions floatRight">
-									<input type="submit" value="{{!ctrl.task.id ? 'Add' : 'Update'}}"class="btn btn-primary btn-sm">
+									<input type="submit"
+										value="{{!ctrl.task.id ? 'Add' : 'Update'}}"
+										class="btn btn-primary btn-sm">
 									<button type="button" ng-click="ctrl.reset()"
 										class="btn btn-warning btn-sm"
 										ng-disabled="taskForm.$pristine">Reset</button>
