@@ -1,7 +1,7 @@
 'use strict';
 angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService', function($scope, TaskService) {
 	var self = this;
-	self.task = { id: '', description: '', dueDate: '' };
+	self.task = { id: null, description: '', dueDate: '' };
 	self.tasks = [];
 
 	self.submit = submit;
