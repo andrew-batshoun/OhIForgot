@@ -71,7 +71,8 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 		if (self.task.id === null) {
 			console.log('Saving New Task', self.task);
 			saveTask(self.task);
-		} else {
+		} 
+		if(self.task.id !== null){
 			updateTask(self.task, self.task.id);
 			console.log('Task updated with id ', self.task.id);
 		}

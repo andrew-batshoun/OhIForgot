@@ -33,13 +33,15 @@ public class TasksController {
 	}
 
 	@RequestMapping(value = "/tasks/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Task> getTask(@PathVariable("id") long id) {
+	public ResponseEntity<Task> getTask(@PathVariable("id") long id, @RequestBody Task task) {
 		System.out.println("Fetching Task with id " + id);
-		Task task = taskService.findTaskById(id);
-		if (task == null) {
+		Task currentTask = taskService.findTaskById(id);
+		if (currentTask == null) {
 			System.out.println("Task with id " + id + " not found");
 			return new ResponseEntity<Task>(HttpStatus.NOT_FOUND);
 		}
+		currentTask.setDescription(task.getDescription());
+		currentTask.setDueDate(task.getDueDate());
 		return new ResponseEntity<Task>(task, HttpStatus.OK);
 	}
 

@@ -73,7 +73,7 @@
 					<div class="formcontainer">
 						<form ng-submit="ctrl.submit()" name="taskForm"
 							class="form-horizontal">
-							<input type="hidden" ng-model="ctrl.task.id" />
+							<input type="hidden"  ng-model="ctrl.task.id" />
 							<div class="row">
 								<div class="form-group col-md-12">
 									<label class="col-md-2 control-lable" for="description">Description</label>
@@ -100,7 +100,7 @@
 							<div class="row">
 								<div class="form-actions floatRight">
 									<input type="submit"
-										value="{{!ctrl.task.id ? 'Add' : 'Update'}}"
+										value="{{ctrl.task.id ? 'Update' : 'Add'}}"
 										class="btn btn-primary btn-sm">
 									<button type="button" ng-click="ctrl.reset()"
 										class="btn btn-warning btn-sm"

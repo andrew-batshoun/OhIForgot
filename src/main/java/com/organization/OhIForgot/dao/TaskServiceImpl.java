@@ -24,6 +24,7 @@ public class TaskServiceImpl implements TaskService{
 		Task task1 = new Task(); 
 		task1.setId(fakeId.incrementAndGet());
 		task1.setDescription("Wash and dry clothes");
+		task1.setDueDate("11/18/2022");
 		
 		
 		
@@ -35,6 +36,7 @@ public class TaskServiceImpl implements TaskService{
 		Task task3 = new Task(); 
 		task3.setId(fakeId.incrementAndGet());
 		task3.setDescription("Study for exam");
+		task3.setDueDate("12/1/2022");
 		
 		tasks.add(task1);
 		tasks.add(task2);
@@ -69,9 +71,9 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	@Override
-	public Task updateTask(Task task) {
+	public void updateTask(Task task) {
 		tasks.set(tasks.indexOf(task), task);
-		return task;
+		
 	}
 
 	@Override
