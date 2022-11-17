@@ -32,7 +32,7 @@ angular.module('taskApp').factory('TaskService', ['$http', '$q', function($http,
 			deferred.resolve(response.data);
 			
 		}, function(errorResponse){
-			console.log("Error")
+			console.log(errorResponse + "Error")
 		});
 		return deferred.promise;
 	}
