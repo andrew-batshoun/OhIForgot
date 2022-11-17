@@ -10,37 +10,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.organization.OhIForgot.model.Task;
 import com.organization.OhIForgot.model.User;
 
 @Controller
 public class HomeController {
 
+	//shows login page
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String loginPage(Model model) {
 		model.addAttribute("message", "Please Enter your login");
 		return "login";
 	}
-
+	
+	//shows welcome page
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String welcome() {
 		return "index";
 	}
-
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String loginPost(Model model, @ModelAttribute("user") User user) {
-
-		if (user != null && user.getUsername() != null & user.getPassword() != null) {
-			if (user.getUsername().equals("admin") && user.getPassword().equals("abc123")) {
-				model.addAttribute("message", user.getUsername());
-				return "redirect:/welcome";
-			} else {
-				model.addAttribute("error", "Invalid Details");
-				return "/login";
-			}
-		} else {
-			model.addAttribute("error", "Please enter Details");
-			return "/login";
-		}
+	
+	//shows tasks page
+	@RequestMapping(value = "/tasks", method = RequestMethod.GET)
+	public ModelAndView task() {
+		return new ModelAndView("tasksPage", "command", new Task());
 	}
+	
+	
 
 }

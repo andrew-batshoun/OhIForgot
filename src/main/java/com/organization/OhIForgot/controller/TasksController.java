@@ -22,10 +22,7 @@ public class TasksController {
 	@Autowired
 	private TaskService taskService;
 
-	@RequestMapping(value = "/tasks", method = RequestMethod.GET)
-	public ModelAndView task() {
-		return new ModelAndView("tasksPage", "command", new Task());
-	}
+	
 
 	@RequestMapping(value = "/tasks/tasklist", method = RequestMethod.GET)
 	public ResponseEntity<List<Task>> listTasks() {
