@@ -1,28 +1,45 @@
 package com.organization.OhIForgot.model;
 
+
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.*;
 
+
+
+@Entity
+@Table(name ="task")
 public class Task {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(name="description")
 	private String description;
 	
-	private String dueDate;
+	@Column(name="due_date")
+	private Date dueDate;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	public Task() {
 	}
 
-	public Task(Long id, String description) {
+	public Task(Long id, String description, User user) {
 		this.id = id;
 		this.description = description;
+		this.user = user;
 
 	}
 
-	public Task(Long id, String description, String dueDate) {
+	public Task(Long id, String description, Date dueDate, User user) {
 		this.id = id;
 		this.description = description;
 		this.dueDate = dueDate;
+		this.user= user;
 	}
 
 	public Long getId() {
@@ -41,14 +58,21 @@ public class Task {
 		this.description = description;
 	}
 
-	public String getDueDate() {
+	public Date getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(String dueDate) {
+	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
 	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user; 
+	}
 	
 	
 
