@@ -16,7 +16,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@PropertySource("classpath: database.properties")
+@PropertySource("classpath:database.properties")
 @EnableTransactionManagement
 public class AppContext {
 
@@ -27,7 +27,7 @@ public class AppContext {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan(new String[] { "com.organization" });
+		sessionFactory.setPackagesToScan(new String[] { "com.organization.OhIForgot" });
 		sessionFactory.setHibernateProperties(hibernateProperties());
 
 		return sessionFactory;
