@@ -2,38 +2,49 @@ package com.organization.OhIForgot.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.organization.OhIForgot.dao.UserDAO;
 import com.organization.OhIForgot.model.User;
 
 public class UserServiceImpl implements UserService {
 
+	@Autowired
+	private UserDAO userDAO; 
+	
 	@Override
+	@Transactional
 	public User findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return userDAO.findById(id);
 	}
 
 	@Override
+	@Transactional
 	public void saveUser(User user) {
-		// TODO Auto-generated method stub
+		userDAO.saveUser(user);
 		
 	}
 
 	@Override
+	@Transactional
 	public void updateUser(User user) {
-		// TODO Auto-generated method stub
+		userDAO.updateUser(user);
 		
 	}
 
 	@Override
+	@Transactional
 	public void deleteUser(Long id) {
-		// TODO Auto-generated method stub
+		userDAO.deleteUser(id);
 		
 	}
 
 	@Override
+	@Transactional
 	public List findAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return userDAO.findAllUsers();
 	}
 
 	

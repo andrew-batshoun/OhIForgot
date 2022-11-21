@@ -2,40 +2,47 @@ package com.organization.OhIForgot.model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+
+
+@Entity
+@Table(name = "Users")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, length = 100, unique = true)
+	@Column(name = "email")
 	private String email;
 	
-	@Column(nullable = false, length = 100, unique = true)
+	@Column(name = "user_name")
 	private String username;
 
-	@Column(nullable = false, length = 100)
+	@Column(name="password")
 	private String password;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-	private List<Task> task;
+	private List<Task> tasks;
 
 	public User() {
-	};
+	}
 
-	public User(Long id, String email, String username, String password) {
+	public User(Long id, String email, String username, String password, List<Task> tasks) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.username = username;
 		this.password = password;
+		this.tasks = tasks;
 	}
 
 	public Long getId() {
@@ -69,5 +76,13 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setPosts(List<Task> tasks) {
+        this.tasks = tasks;
+    }
 
 }

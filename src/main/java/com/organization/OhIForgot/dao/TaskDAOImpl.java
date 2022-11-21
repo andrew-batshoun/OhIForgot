@@ -23,7 +23,7 @@ public class TaskDAOImpl implements TaskDAO {
 	@Override
 	public Task findTaskById(Long id) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		Task task = (Task) currentSession.get(Task.class, id);
+		Task task = currentSession.get(Task.class, id);
 		return task;
 	}
 
@@ -43,7 +43,7 @@ public class TaskDAOImpl implements TaskDAO {
 	@Override
 	public void deleteTask(Long id) {
 		Session session = sessionFactory.getCurrentSession();
-		Task task = (Task) session.byId(Task.class).load(id);
+		Task task = session.byId(Task.class).load(id);
 		session.delete(task);
 	}
 

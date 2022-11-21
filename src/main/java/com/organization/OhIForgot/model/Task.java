@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
-@Table(name ="task")
+@Table(name ="tasks")
 public class Task {
 	
 	@Id
@@ -43,7 +43,8 @@ public class Task {
 	public Task(Long id, String description, User user) {
 		this.id = id;
 		this.description = description;
-		this.user = user;
+		this.user = user; 
+		
 
 	}
 
@@ -51,8 +52,9 @@ public class Task {
 		this.id = id;
 		this.description = description;
 		this.dueDate = dueDate;
-		this.user= user;
+		this.user = user; 
 	}
+	
 
 	public Long getId() {
 		return id;
@@ -77,13 +79,13 @@ public class Task {
 	public void setDueDate(LocalDate dueDate) {
 		this.dueDate = dueDate;
 	}
-	
+
 	public User getUser() {
 		return user;
 	}
-	
+
 	public void setUser(User user) {
-		this.user = user; 
+		this.user = user;
 	}
 	
 	
