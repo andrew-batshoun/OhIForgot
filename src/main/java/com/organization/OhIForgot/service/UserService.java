@@ -6,11 +6,11 @@ import com.organization.OhIForgot.model.User;
 
 public interface UserService {
 
-	User findById(Long id);
-	void saveUser(User user);
-	void updateUser(User user);
-	void deleteUser(Long id);
-	List findAllUsers();
+	public User findById(Long id);
+	public void saveUser(User user);
+	public void updateUser(User user);
+	public void deleteUser(Long id);
+	public List findAllUsers();
 	
 	
 }
