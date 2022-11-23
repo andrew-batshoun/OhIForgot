@@ -73,7 +73,7 @@
 					<div class="formcontainer">
 						<form ng-submit="ctrl.submit()" name="taskForm"
 							class="form-horizontal">
-							<input type="hidden"  ng-model="ctrl.task.id" />
+						<!-- -->	 <input type="text"  ng-model="ctrl.task.id" /> 
 							<div class="row">
 								<div class="form-group col-md-12">
 									<label class="col-md-2 control-lable" for="description">Description</label>

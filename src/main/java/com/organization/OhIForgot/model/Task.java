@@ -29,30 +29,30 @@ public class Task {
 	@Column(name="description")
 	private String description;
 	
-	@DateTimeFormat(pattern ="dd/MM/yyyy")
+//	@DateTimeFormat(pattern ="dd/MM/yyyy")
 	@Column(name="due_date")
-	private LocalDate dueDate;
+	private String dueDate;
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+//	@ManyToOne
+//	@JoinColumn(name = "user_id")
+//	private User user;
 
 	public Task() {
 	}
 
-	public Task(Long id, String description, User user) {
+	public Task(Long id, String description) {
 		this.id = id;
 		this.description = description;
-		this.user = user; 
+//		this.user = user; 
 		
 
 	}
 
-	public Task(Long id, String description, LocalDate dueDate, User user) {
+	public Task(Long id, String description, String dueDate) {
 		this.id = id;
 		this.description = description;
 		this.dueDate = dueDate;
-		this.user = user; 
+//		this.user = user; 
 	}
 	
 
@@ -72,21 +72,21 @@ public class Task {
 		this.description = description;
 	}
 
-	public LocalDate getDueDate() {
+	public String getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(LocalDate dueDate) {
+	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 	
 	
 

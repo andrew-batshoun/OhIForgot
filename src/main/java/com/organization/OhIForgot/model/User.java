@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
 
 	@Id
@@ -30,19 +30,19 @@ public class User {
 	@Column(name="password")
 	private String password;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-	private List<Task> tasks;
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+//	private List<Task> tasks;
 
 	public User() {
 	}
 
-	public User(Long id, String email, String username, String password, List<Task> tasks) {
+	public User(Long id, String email, String username, String password) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.username = username;
 		this.password = password;
-		this.tasks = tasks;
+//		this.tasks = tasks;
 	}
 
 	public Long getId() {
@@ -77,12 +77,12 @@ public class User {
 		this.password = password;
 	}
 	
-	public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setPosts(List<Task> tasks) {
-        this.tasks = tasks;
-    }
+//	public List<Task> getTasks() {
+//        return tasks;
+//    }
+//
+//    public void setPosts(List<Task> tasks) {
+//        this.tasks = tasks;
+//    }
 
 }

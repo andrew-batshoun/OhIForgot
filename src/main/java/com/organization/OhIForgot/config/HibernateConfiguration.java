@@ -26,7 +26,7 @@ public class HibernateConfiguration {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan(new String[] { "com.organization.OhIForgot" });
+		sessionFactory.setPackagesToScan(new String[] { "com.organization.OhIForgot.model" });
 		sessionFactory.setHibernateProperties(hibernateProperties());
 
 		return sessionFactory;
@@ -35,10 +35,10 @@ public class HibernateConfiguration {
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(env.getRequiredProperty("database.driverClassName"));
-		dataSource.setUrl(env.getProperty("database.url"));
-		dataSource.setUsername(env.getProperty("database.username"));
-		dataSource.setPassword(env.getProperty("database.password"));
+		dataSource.setDriverClassName(env.getRequiredProperty("jdbc.driverClassName"));
+		dataSource.setUrl(env.getProperty("jdbc.url"));
+		dataSource.setUsername(env.getProperty("jdbc.username"));
+		dataSource.setPassword(env.getProperty("jdbc.password"));
 		return dataSource;
 	}
 
@@ -52,7 +52,10 @@ public class HibernateConfiguration {
 	private final Properties hibernateProperties() {
 		Properties hibernateProperties = new Properties();
 		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
+		hibernateProperties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
+        hibernateProperties.put("hibernate.format_sql", env.getRequiredProperty("hibernate.format_sql"));
 		hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+		
 		return hibernateProperties;
 	}
 }

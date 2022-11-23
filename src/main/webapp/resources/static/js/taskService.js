@@ -15,7 +15,7 @@ angular.module('taskApp').factory('TaskService', ['$http', '$q', function($http,
 
 	function listTasks() {
 		var deferred = $q.defer();
-		$http.get(REST_SERVICE_URI + "tasklist").then(function(response) {
+		$http.get(REST_SERVICE_URI).then(function(response) {
 			deferred.resolve(response.data);
 		},
 			function(errResponse) {
