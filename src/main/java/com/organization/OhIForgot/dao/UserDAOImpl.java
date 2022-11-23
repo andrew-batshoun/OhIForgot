@@ -54,6 +54,8 @@ public class UserDAOImpl implements UserDAO{
 		
 	}
 
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAllUsers() {
 		Session session = sessionFactory.getCurrentSession();

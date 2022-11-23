@@ -29,13 +29,22 @@ public class TasksController {
 		return new ResponseEntity<List<Task>>(taskService.listTasks(), HttpStatus.OK);
 	}
 
+//	@PostMapping("/")
+//	public ResponseEntity<Void> saveTask(@RequestBody Task task) {
+//		System.out.println(task.getId() + task.getDescription() + task.getDueDate());
+//		if (task.getId() != null && taskService.findTaskById(task.getId()) != null) {
+//			System.out.println("A task with the id " + task.getId() + " already exsit");
+//			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+//		}
+//		task.setId(0L);
+//		taskService.saveTask(task);
+//		return new ResponseEntity<Void>(HttpStatus.OK);
+//	}
+	
 	@PostMapping("/")
-	public ResponseEntity<Void> saveTask(@RequestBody Task task) {
-		if (taskService.findTaskById(task.getId()) != null) {
-			System.out.println("A task with the id " + task.getId() + " already exsit");
-			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-		}
-		return new ResponseEntity<Void>(HttpStatus.OK);
+	public ResponseEntity<Task> saveTask(@RequestBody Task task){
+		taskService.saveTask(task);
+		return new ResponseEntity<Task>(task, HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")

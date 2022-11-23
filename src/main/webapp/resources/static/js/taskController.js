@@ -1,7 +1,7 @@
 'use strict';
 angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService', function($scope, TaskService) {
 	var self = this;
-	self.task = { id: null, description: '', dueDate: '' };
+	self.task = { id: '', description: '', dueDate: '' };
 	self.tasks = [];
 
 	self.submit = submit;
@@ -68,14 +68,14 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 	}
 
 	function submit() {
-		if (self.task.id === null) {
-			console.log('Saving New Task', self.task);
+		//if (self.task.id === null) {
+			//console.log('Saving New Task', self.task);
 			saveTask(self.task);
-		} 
-		if(self.task.id !== null){
-			updateTask(self.task, self.task.id);
-			console.log('Task updated with id ', self.task.id);
-		}
+		//} 
+		//if(self.task.id !== null){
+		//	updateTask(self.task, self.task.id);
+		//	console.log('Task updated with id ', self.task.id);
+		//}
 		reset();
 	}
 

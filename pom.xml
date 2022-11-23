@@ -21,6 +21,8 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<junit5.version>5.8.1</junit5.version>
 		<mockito.version>4.0.0</mockito.version>
+		<jstl.version>1.2.1</jstl.version>
+        <tld.version>1.1.2</tld.version>
 	</properties>
 
 	<dependencies>
@@ -56,7 +58,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.2.17.Final</version>
+			<version>5.6.14.Final</version>
 		</dependency>
 
 		<dependency>
@@ -79,6 +81,7 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>2.1.214</version>
+			
 		</dependency>
 
 		<!-- Servlet Specs enhance jsp and tag intellisense-->
@@ -95,6 +98,18 @@
 			<version>2.3.3</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		 <!-- JSTL Dependency -->
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>${tld.version}</version>
+        </dependency>
 
 		<!-- Logging -->
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->

@@ -23,14 +23,17 @@ public class TaskDAOImpl implements TaskDAO {
 	@Override
 	public Task findTaskById(Long id) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		Task task = currentSession.get(Task.class, id);
-		return task;
+		return currentSession.get(Task.class, id);
 	}
 
 	@Override
 	public void saveTask(Task task) {
+		task.setId(0L);
+		System.out.print(task.getId());
+		
 		Session currentSession = sessionFactory.getCurrentSession();
 		currentSession.save(task);
+		
 	}
 
 	@Override
@@ -47,6 +50,7 @@ public class TaskDAOImpl implements TaskDAO {
 		session.delete(task);
 	}
 
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Task> listTasks() {
