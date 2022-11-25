@@ -1,4 +1,3 @@
-
 insert into tasks(description, due_date)
 values('Study for exam', ''),
 	  ('Walk the dog', '11/22/2022'),

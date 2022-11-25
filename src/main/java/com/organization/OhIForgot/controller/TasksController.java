@@ -36,7 +36,6 @@ public class TasksController {
 //			System.out.println("A task with the id " + task.getId() + " already exsit");
 //			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 //		}
-//		task.setId(0L);
 //		taskService.saveTask(task);
 //		return new ResponseEntity<Void>(HttpStatus.OK);
 //	}

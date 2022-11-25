@@ -51,7 +51,6 @@ public class HibernateConfiguration {
 	    .generateUniqueName(false)
 	    .setName("testdb")
 	    .setType(EmbeddedDatabaseType.H2)
-//	    .addDefaultScripts()
 	    .setScriptEncoding("UTF-8")
 	    .ignoreFailedDrops(true)
 	    .build();

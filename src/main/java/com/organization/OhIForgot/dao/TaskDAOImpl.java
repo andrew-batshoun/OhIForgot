@@ -28,8 +28,6 @@ public class TaskDAOImpl implements TaskDAO {
 
 	@Override
 	public void saveTask(Task task) {
-		task.setId(0L);
-		System.out.print(task.getId());
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		currentSession.save(task);

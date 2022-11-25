@@ -1,13 +1,15 @@
 'use strict';
 angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService', function($scope, TaskService) {
 	var self = this;
-	self.task = { id: '', description: '', dueDate: '' };
+	self.task = { id: null, description: '', dueDate: '' };
 	self.tasks = [];
 
 	self.submit = submit;
 	self.edit = edit;
 	self.remove = remove;
 	self.reset = reset;
+	
+
 
 	listTasks();
 
@@ -31,7 +33,7 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 			.then(
 				listTasks,
 				function(errResponse) {
-					console.error(errResponse +'Error while updating Task');
+					console.error(errResponse + 'Error while updating Task');
 				}
 			);
 	}
@@ -48,9 +50,9 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 
 	function edit(id) {
 		console.log('id to be edited', id);
-		for (var i = 0; i < self.tasks.length; i++) {
-			if (self.tasks[i].id === id) {
-				self.task = angular.copy(self.tasks[i]);
+		for (const element of self.tasks) {
+			if (element.id === id) {
+				self.task = angular.copy(element);
 				break;
 			}
 		}
@@ -61,17 +63,16 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 		let accept = confirm("Do you want to delete task?");
 		if (accept) {
 			deleteTask(id);
-		}else{
+		} else {
 			reset();
 		}
 
 	}
 
 	function submit() {
-		//if (self.task.id === null) {
-			//console.log('Saving New Task', self.task);
-			saveTask(self.task);
-		//} 
+
+		saveTask(self.task);
+		 
 		//if(self.task.id !== null){
 		//	updateTask(self.task, self.task.id);
 		//	console.log('Task updated with id ', self.task.id);
@@ -80,17 +81,31 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 	}
 
 	function reset() {
-		self.task = { id: null, description:'', dueDate: null };
+		self.task = { id: null, description: '', dueDate: null };
 		$scope.taskForm.$setPristine();
 	}
-	
+
 	$scope.showMe = false;
-	
-	$scope.showRemove = function(){
+
+	$scope.showRemove = function() {
 		$scope.showMe = $scope.checkSelected;
 		console.log("checked task id:" + self.task.id)
 	}
 
+	$scope.getTemplate = function(task) {
+		if (task.id === self.task.id) {
+			return 'edit';
+		}
+		else return 'display'
+	}
+
+	$scope.updateSubmit = function() {
+		console.log(self.task.description)
+		updateTask(self.task, self.task.id);
+		console.log(self.task.description);
+		console.log('Task updated with id ', self.task.id);
+		reset();
+	};
 
 
 
