@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.organization.OhIForgot.model.User;
 
 @Controller
-public class LoginController {
+public class UserController {
 	
 	
 
