@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.organization.OhIForgot.model.Task;
+import com.organization.OhIForgot.model.User;
 
 
 @Controller
@@ -28,6 +29,11 @@ public class HomeController {
 	@GetMapping("/")
 	public String login() {
 		return "login";
+	}
+	
+	@GetMapping("/register")
+	public ModelAndView register() {
+		return new ModelAndView("register", "command", new User());
 	}
 	
 

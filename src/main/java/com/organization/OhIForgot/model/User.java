@@ -37,12 +37,10 @@ public class User {
 	}
 
 	public User(Long id, String email, String username, String password) {
-		super();
 		this.id = id;
 		this.email = email;
 		this.username = username;
 		this.password = password;
-//		this.tasks = tasks;
 	}
 
 	public Long getId() {
