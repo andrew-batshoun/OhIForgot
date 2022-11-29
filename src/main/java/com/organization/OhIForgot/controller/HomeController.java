@@ -16,7 +16,7 @@ public class HomeController {
 
 
 	//shows welcome page
-	@GetMapping(value = "/welcome")
+	@GetMapping(value = "/")
 	public String welcome() {
 		return "welcome";
 	}
@@ -26,8 +26,8 @@ public class HomeController {
 		return new ModelAndView("tasksPage", "command", new Task());
 	}
 	
-	@GetMapping("/")
-	public String login() {
+	@GetMapping("/login")
+	public String loginPage() {
 		return "login";
 	}
 	

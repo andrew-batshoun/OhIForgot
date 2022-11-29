@@ -12,7 +12,7 @@
 <body>
 
 	<div class="text-center">
-		<form class="form-signin" action="/" method="POST">
+		<form class="form-signin" action="/login/" method="POST">
 			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 			<label for="username" class="sr-only">Username</label> 
 			<input

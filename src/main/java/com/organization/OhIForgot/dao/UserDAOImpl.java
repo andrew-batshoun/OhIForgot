@@ -13,7 +13,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
 import com.organization.OhIForgot.model.User;
 
 
@@ -26,9 +25,7 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public User findById(Long id) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query query = currentSession.createQuery("from User where id = :id");
-		query.setParameter("id", id);
-		return (User) query.getResultList();
+		return currentSession.get(User.class, id);
 	}
 
 	@Override
@@ -65,6 +62,14 @@ public class UserDAOImpl implements UserDAO{
 		cq.select(root);
 		Query query = session.createQuery(cq);
 		return query.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public User findbyName(String username) {
+		Query query = sessionFactory.getCurrentSession().createQuery("from User where username = :username" );
+		query.setParameter("username", username);
+		return (User) query.getResultList().stream().findFirst().orElse(null);
 	}
 
 }

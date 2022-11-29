@@ -71,7 +71,7 @@ angular.module('taskApp').controller('RegisterController', ['$scope', '$window',
 	}
 	
 	function redirect(){
-		var url = "/";
+		var url = "/login";
 		$window.location.href = url;
 	}
 	

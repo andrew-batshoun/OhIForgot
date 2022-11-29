@@ -1,6 +1,6 @@
 package com.organization.OhIForgot.controller;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,27 +17,32 @@ import com.organization.OhIForgot.model.User;
 import com.organization.OhIForgot.service.UserService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/login")
 public class LoginController {
 	
 	@Autowired
 	private UserService userService;
 	
 	@PostMapping("/")
-	public ResponseEntity<User> login(@RequestBody User user){
-	List<User> existingUsers =	userService.findAllUsers();
-	   for(User exist: existingUsers) {
-		   if(exist.getId().equals(user.getId())) {
-			   return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-		   }else {
-			   return new ResponseEntity<User>(HttpStatus.OK);
-		   }
-		   
-	   }
-	   return null; 
-	
+	public String loginPost(Model model, @ModelAttribute("user") User user) {
+		User existingUser = userService.findbyName(user.getUsername());
+			
+		if (existingUser != null && user.getUsername() != null & user.getPassword() != null) {
+			if (user.getUsername().equals(existingUser.getUsername()) && user.getPassword().equals(existingUser.getPassword())) {
+				model.addAttribute("message", user.getUsername());
+				return "redirect:/tasks";
+			} else {
+				model.addAttribute("error", "Invalid Details");
+				return "/login";
+			}
+		} else {
+			model.addAttribute("error", "Please enter Details");
+			return "/login";
+		}
+		}
+		
 	}
 	
 	
 
-}
+
