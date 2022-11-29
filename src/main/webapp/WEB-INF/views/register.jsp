@@ -6,16 +6,19 @@
 <head>
 <tag:head />
 <meta charset="UTF-8" />
-<title>Log In</title>
-<link rel="stylesheet" href="/resources/login.css">
+<title>Register</title>
+<link rel="stylesheet" href="/resources/register.css">
 </head>
 <body ng-app="taskApp" class="ng-cloak">
-	<div class="container" ng-controller="RegisterController as ctrl"
-		style="margin: 1em">
-		
+<tag:navbar></tag:navbar>
+<br>
+	<div class ="reg-form"  ng-controller="RegisterController as ctrl"
+		>
+		<h4>Create an Account</h4>
+		<br>
 		<form ng-submit="ctrl.submit()" name="userForm"
 							class="form-horizontal">
-							<input type="text" ng-model="ctrl.user.id" />
+							<input type="hidden" ng-model="ctrl.user.id" />
 							<div class="row">
 								<div class="form-group col-md-12">
 									<label class="col-md-2 control-lable" for="username">Username</label>
@@ -31,7 +34,7 @@
 									<label class="col-md-2 control-lable" for="email">Email
 										</label>
 									<div class="col-md-7">
-										<input type="text" ng-model="ctrl.user.email" id="email"
+										<input type="email" ng-model="ctrl.user.email" id="email"
 											class="form-control input-sm"
 											placeholder="Enter an Email " />
 									</div>

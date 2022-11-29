@@ -6,11 +6,12 @@
 <head>
 <tag:head />
 <meta charset="UTF-8" />
+<%@taglib prefix="tag" tagdir="/WEB-INF/tags"%>
 <title>Log In</title>
 <link rel="stylesheet" href="/resources/login.css">
 </head>
 <body>
-
+<tag:navbar></tag:navbar>
 	<div class="text-center">
 		<form class="form-signin" action="/login/" method="POST">
 			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>

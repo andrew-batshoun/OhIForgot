@@ -6,7 +6,7 @@
 <html>
 <head>
 <tag:head />
-<title>Welcome</title>
+<title>Welcome ${user}</title>
 </head>
 <body >
 	<tag:navbar />
