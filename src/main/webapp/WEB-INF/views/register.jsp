@@ -52,7 +52,7 @@
 									<div class="col-md-7">
 										<input type="email" ng-model="ctrl.user.email" id="email"
 											class="form-control input-sm"
-											placeholder="Enter an Email " />
+											placeholder="Enter an Email " required/>
 									</div>
 								</div>
 							</div>
@@ -63,7 +63,7 @@
 									<div class="col-md-7">
 										<input type="password" ng-model="ctrl.user.password" id="password"
 											class="form-control input-sm"
-											placeholder="Enter Password " />
+											placeholder="Enter Password " required />
 									</div>
 								</div>
 							</div>
