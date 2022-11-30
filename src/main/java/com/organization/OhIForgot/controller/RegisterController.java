@@ -22,6 +22,7 @@ public class RegisterController {
 	@Autowired
 	private UserService userService;
 
+	//saving user
 	@PostMapping("/")
 	public ResponseEntity<User> saveUser(@RequestBody User user){
 		
@@ -32,8 +33,7 @@ public class RegisterController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
-
-
+	//updates user NOT USED YET
 	@PutMapping("/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
 		System.out.println("Updating user " + id);
@@ -52,6 +52,7 @@ public class RegisterController {
 		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
 	}
 
+	//Deletes User NOT USED YET
 	@DeleteMapping("/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable("id") long id) {
 		System.out.println("Retrieving & Deleting User with id " + id);

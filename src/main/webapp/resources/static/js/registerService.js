@@ -13,7 +13,7 @@ angular.module('taskApp').factory('UserService', ['$http', '$q', function($http,
 	return factory;
 
 	
-
+	//saves user
 	function saveUser(user) {
 		var deferred = $q.defer();
 		console.log(user)
@@ -28,6 +28,7 @@ angular.module('taskApp').factory('UserService', ['$http', '$q', function($http,
 		return deferred.promise;
 	}
 	
+	//updates user. NOT APPLIED YET
 	function updateUser(user, id) {
         var deferred = $q.defer();
         $http.put(REST_SERVICE_URI+id, user)
@@ -43,6 +44,7 @@ angular.module('taskApp').factory('UserService', ['$http', '$q', function($http,
         return deferred.promise;
     }
     
+    //deletes user, NOT APPLIED YET
     function deleteUser(id) {
         var deferred = $q.defer();
         $http.delete(REST_SERVICE_URI+id)

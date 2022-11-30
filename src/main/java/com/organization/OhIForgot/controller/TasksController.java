@@ -26,22 +26,13 @@ public class TasksController {
 	@Autowired
 	private TaskService taskService;
 
+	//list of tasks
 	@GetMapping("/")
 	public ResponseEntity<List<Task>> listTasks() {
 		return new ResponseEntity<List<Task>>(taskService.listTasks(), HttpStatus.OK);
 	}
 
-//	@PostMapping("/")
-//	public ResponseEntity<Void> saveTask(@RequestBody Task task) {
-//		System.out.println(task.getId() + task.getDescription() + task.getDueDate());
-//		if (task.getId() != null && taskService.findTaskById(task.getId()) != null) {
-//			System.out.println("A task with the id " + task.getId() + " already exsit");
-//			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-//		}
-//		taskService.saveTask(task);
-//		return new ResponseEntity<Void>(HttpStatus.OK);
-//	}
-	
+	//saves task
 	@PostMapping("/")
 	public ResponseEntity<Task> saveTask(@RequestBody Task task){
 		 
@@ -49,6 +40,7 @@ public class TasksController {
 		return new ResponseEntity<Task>(task, HttpStatus.OK);
 	}
 
+	//updates task 
 	@PutMapping("/{id}")
 	public ResponseEntity<Task> updateTask(@PathVariable("id") long id, @RequestBody Task task) {
 		System.out.println("Updating task " + id);
@@ -68,6 +60,8 @@ public class TasksController {
 		return new ResponseEntity<Task>(currentTask, HttpStatus.OK);
 	}
 	
+	
+	//deletes task 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Task> deleteTask(@PathVariable("id") long id) {
         System.out.println("Retrieving & Deleting Task with id " + id);

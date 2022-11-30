@@ -1,21 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	<!-- insert Tags -->
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
+
 <head>
+
+<!-- tag for bootstrap and angular stylesheets -->
 <tag:head />
-<meta charset="UTF-8" />
+
+
 <title>Register</title>
+
 <link rel="stylesheet" href="/resources/register.css">
 </head>
+
+<!-- Start of angularjs -->
 <body ng-app="taskApp" class="ng-cloak">
-<tag:navbar></tag:navbar>
-<br>
+
+<!-- tag for navbar -->
+<tag:navbar/>
+	
+	<br>
+	
 	<div class ="reg-form"  ng-controller="RegisterController as ctrl"
 		>
 		<h4>Create an Account</h4>
+		
 		<br>
+		
+		<!-- Start of register form -->
 		<form ng-submit="ctrl.submit()" name="userForm"
 							class="form-horizontal">
 							<input type="hidden" ng-model="ctrl.user.id" />

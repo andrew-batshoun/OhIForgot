@@ -21,16 +21,19 @@ public class HomeController {
 		return "welcome";
 	}
 	
+	//shows task page 
 	@RequestMapping(value = "/tasks", method = RequestMethod.GET )
 	public ModelAndView task() {
 		return new ModelAndView("tasksPage", "command", new Task());
 	}
 	
+	//shows login page
 	@GetMapping("/login")
 	public String loginPage() {
 		return "login";
 	}
 	
+	//shows register page
 	@GetMapping("/register")
 	public ModelAndView register() {
 		return new ModelAndView("register", "command", new User());

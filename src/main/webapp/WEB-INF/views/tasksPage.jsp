@@ -6,17 +6,20 @@
 
 <head>
 
-<tag:head />
+<tag:head /> <!-- tag for bootstrap and angular stylesheets -->
 
 <title>Task list</title>
 
 </head>
-<body ng-app="taskApp" class="ng-cloak">
 
-	<tag:navbar />
+<!-- Starts angular -->
+<body ng-app="taskApp" class="ng-cloak"> 
 
+	<tag:navbar /> <!-- tag for navbar -->
+
+	<!--div with ng controller   -->
 	<div class="container" ng-controller="TasksController as ctrl"
-		style="margin: 1em">
+		style="margin: 1em">  
 
 		<div class="panel panel-default">
 			<div class="panel-Heading">
@@ -35,24 +38,28 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="currentTask in ctrl.tasks"
-							ng-include="getTemplate(currentTask)">
+						<!-- repeats tasks, uses template located below at scripts element  -->
+						<tr ng-repeat="currentTask in ctrl.tasks"   
+							ng-include="getTemplate(currentTask)"> 
 
 						</tr>
 					</tbody>
 				</table>
 			</div>
+			<!-- Activates Model for adding a task, will not show when editing task -->
 			<input ng-show="!ctrl.task.id" class="btn btn-primary"
 				value="New Task" type="button" data-bs-toggle="collapse"
 				data-bs-target="#collapseCreateTask" aria-expanded="false"
-				aria-controls="collapseCreateTask">
+				aria-controls="collapseCreateTask">     
 
 		</div>
-
+		
+		<!--Model for adding task  -->
 		<div ng-show="!ctrl.task.id" class="collapse" id="collapseCreateTask">
 			<div class="card card-body">
 				<div class="panel panel-default">
-
+					
+					<!--Form for adding task in Model -->
 					<div class="formcontainer">
 						<form ng-submit="ctrl.submit()" name="taskForm"
 							class="form-horizontal">
@@ -94,7 +101,11 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- tag for bootstrap and angular scripts with footer title -->
 	<tag:footer></tag:footer>
+	
+	<!-- Script for showing task and for inline editing  -->
 	<script type="text/ng-template" id="display">
 	<td><span ng-bind="currentTask.id"></span></td>
 							<td><span ng-bind="currentTask.description"></span></td>

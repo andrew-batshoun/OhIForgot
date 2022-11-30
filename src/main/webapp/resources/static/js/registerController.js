@@ -10,14 +10,20 @@ angular.module('taskApp').controller('RegisterController', ['$scope', '$window',
 	self.reset = reset;
 	
 
-
+	//function to save user
 	function saveUser(user) {
 		return UserService.saveUser(user).then(redirect, function(errResponse) {
 			console.log(errResponse + ':Error while creating user');
 			
 		});
 	}
-
+	
+	//calls saveuser function when form is submitted
+	function submit() {
+		saveUser(self.user); 
+	}
+	
+	//function to update user NOT APPLIED	
 	function updateUser(user, id) {
 		UserService.updateUser(user, id)
 			.then(
@@ -26,17 +32,8 @@ angular.module('taskApp').controller('RegisterController', ['$scope', '$window',
 				}
 			);
 	}
-
-	function deleteUser(id) {
-		UserService.deleteTask(id)
-			.then(
-			
-			function(errResponse) {
-				console.error(errResponse + 'Error while deleting user');
-				}
-			);
-	}
-
+	
+	//function to select user to be updated
 	function edit(id) {
 		console.log('id to be edited', id);
 		for (const element of self.users) {
@@ -46,7 +43,19 @@ angular.module('taskApp').controller('RegisterController', ['$scope', '$window',
 			}
 		}
 	}
-
+	
+	//function to delete user NOT APPLIED	
+	function deleteUser(id) {
+		UserService.deleteTask(id)
+			.then(
+			
+			function(errResponse) {
+				console.error(errResponse + 'Error while deleting user');
+				}
+			);
+	}
+	
+	//calls deleteuser function 
 	function remove(id) {
 		console.log('id to be deleted', id);
 		let accept = confirm("Do you want to delete user?");
@@ -58,18 +67,13 @@ angular.module('taskApp').controller('RegisterController', ['$scope', '$window',
 
 	}
 
-	function submit() {
-
-		saveUser(self.user);
-		 
-	
-	}
-
+	//resets form
 	function reset() {
 		self.user = {  id: null, email: '', username: '', password: '' };
 		$scope.taskForm.$setPristine();
 	}
 	
+	//function to redirect to login, called in saveuser
 	function redirect(){
 		var url = "/login";
 		$window.location.href = url;

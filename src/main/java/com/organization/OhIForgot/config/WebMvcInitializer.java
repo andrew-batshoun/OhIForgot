@@ -24,6 +24,7 @@ public class WebMvcInitializer extends AbstractAnnotationConfigDispatcherServlet
 		return new String[] { "/" };
 	}
 
+	//allows to use h2 embedded console on startup 
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		super.onStartup(servletContext);

@@ -33,18 +33,8 @@ public class HibernateConfiguration {
 
 		return sessionFactory;
 	}
-
-//	@Bean
-//	public DataSource dataSource() {
-//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//		dataSource.setDriverClassName(env.getRequiredProperty("jdbc.driverClassName"));
-//		dataSource.setUrl(env.getProperty("jdbc.url"));
-//		dataSource.setUsername(env.getProperty("jdbc.username"));
-//		dataSource.setPassword(env.getProperty("jdbc.password"));
-//		return dataSource;
-//	}
 	
-	
+	//configuration for h2
 	@Bean
 	public DataSource dataSource() {
 	  return new EmbeddedDatabaseBuilder()
