@@ -72,7 +72,7 @@
 									<label class="col-md-2 control-lable" for="date">Due
 										Date</label>
 									<div class="col-md-7">
-										<input type="text" ng-model="ctrl.task.dueDate" id="date"
+										<input type="date" ng-model="ctrl.task.dueDate" id="date"
 											class="form-control input-sm"
 											placeholder="Enter a due date. " />
 									</div>
@@ -98,7 +98,7 @@
 	<script type="text/ng-template" id="display">
 	<td><span ng-bind="currentTask.id"></span></td>
 							<td><span ng-bind="currentTask.description"></span></td>
-							<td><span ng-bind="currentTask.dueDate"></span></td>
+							<td><span ng-bind="currentTask.dueDate | date:'MM/dd/yyyy'  "></span></td>
 							<td><input type="checkbox" ng-change="showRemove()"
 								ng-model="checkSelected"></td>
 							<td>
@@ -120,7 +120,7 @@
 	<script type="text/ng-template" id="edit">
 	<td><span ng-bind="currentTask.id"></span></td>
 							<td><input ng-model="ctrl.task.description"/></td>
-							<td><input ng-model="ctrl.task.dueDate"/></td>
+							<td><input type ="date" ng-model="ctrl.task.dueDate"/></td>
 							<td><input type="checkbox" ng-change="showRemove()"
 								ng-model="checkSelected"></td>
 							<td>

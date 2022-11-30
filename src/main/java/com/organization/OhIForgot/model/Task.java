@@ -2,7 +2,7 @@ package com.organization.OhIForgot.model;
 
 
 import java.time.LocalDate;
-
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,9 +31,9 @@ public class Task {
 	@Column(name="description")
 	private String description;
 	
-//	@DateTimeFormat(pattern ="dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
 	@Column(name="due_date")
-	private String dueDate;
+	private Date dueDate;
 	
 //	@ManyToOne
 //	@JoinColumn(name = "user_id")
@@ -48,7 +50,7 @@ public class Task {
 
 	}
 
-	public Task(Long id, String description, String dueDate) {
+	public Task(Long id, String description, Date dueDate) {
 		this.id = id;
 		this.description = description;
 		this.dueDate = dueDate;
@@ -72,11 +74,11 @@ public class Task {
 		this.description = description;
 	}
 
-	public String getDueDate() {
+	public Date getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(String dueDate) {
+	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
 

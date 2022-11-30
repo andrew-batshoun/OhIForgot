@@ -32,11 +32,11 @@ public class LoginController {
 				model.addAttribute("message", user.getUsername());
 				return "redirect:/tasks";
 			} else {
-				model.addAttribute("error", "Invalid Details");
+				model.addAttribute("error", "Invalid Login Details");
 				return "/login";
 			}
 		} else {
-			model.addAttribute("error", "Please enter Details");
+			model.addAttribute("error", "Please enter Login Details");
 			return "/login";
 		}
 		}
