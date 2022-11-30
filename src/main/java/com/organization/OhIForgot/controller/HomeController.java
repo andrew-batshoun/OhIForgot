@@ -1,46 +1,43 @@
 package com.organization.OhIForgot.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.organization.OhIForgot.model.Task;
 import com.organization.OhIForgot.model.User;
+
 
 @Controller
 public class HomeController {
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String loginPage(Model model) {
-		model.addAttribute("message", "Please Enter your login");
+
+	//shows welcome page
+	@GetMapping(value = "/")
+	public String welcome() {
+		return "welcome";
+	}
+	
+	//shows task page 
+	@RequestMapping(value = "/tasks", method = RequestMethod.GET )
+	public ModelAndView task() {
+		return new ModelAndView("tasksPage", "command", new Task());
+	}
+	
+	//shows login page
+	@GetMapping("/login")
+	public String loginPage() {
 		return "login";
 	}
-
-	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
-	public String welcome() {
-		return "index";
+	
+	//shows register page
+	@GetMapping("/register")
+	public ModelAndView register() {
+		return new ModelAndView("register", "command", new User());
 	}
-
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String loginPost(Model model, @ModelAttribute("user") User user) {
-
-		if (user != null && user.getUsername() != null & user.getPassword() != null) {
-			if (user.getUsername().equals("admin") && user.getPassword().equals("abc123")) {
-				model.addAttribute("message", user.getUsername());
-				return "redirect:/welcome";
-			} else {
-				model.addAttribute("error", "Invalid Details");
-				return "/login";
-			}
-		} else {
-			model.addAttribute("error", "Please enter Details");
-			return "/login";
-		}
-	}
+	
 
 }

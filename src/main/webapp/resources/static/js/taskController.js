@@ -8,9 +8,12 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 	self.edit = edit;
 	self.remove = remove;
 	self.reset = reset;
+	
 
+	//calls function for all tasks
 	listTasks();
 
+	//function for listing all tasks
 	function listTasks() {
 		TaskService.listTasks().then(function(data) {
 			self.tasks = data;
@@ -19,23 +22,62 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 				console.error(errResponse + ':Error while fetching list');
 			});
 	}
-
+	
+	//function for saving a task 
 	function saveTask(task) {
 		return TaskService.saveTask(task).then(listTasks, function(errResponse) {
 			console.error(errResponse + ':Error while creating task');
 		});
 	}
+	
+	//calls save function when form is submitted
+	function submit() {
 
+		saveTask(self.task);
+		 
+		reset();
+	}
+	
+	//function for updating task 
 	function updateTask(task, id) {
 		TaskService.updateTask(task, id)
 			.then(
 				listTasks,
 				function(errResponse) {
-					console.error(errResponse +'Error while updating Task');
+					console.error(errResponse + 'Error while updating Task');
 				}
 			);
 	}
-
+	
+	//function to select task to edit
+	function edit(id) {
+		console.log('id to be edited', id);
+		for (const element of self.tasks) {
+			if (element.id === id) {
+				self.task = angular.copy(element);
+				break;
+			}
+		}
+	}
+	
+	//function to call update function when button is clicked
+	$scope.updateSubmit = function() {
+		console.log(self.task.description)
+		updateTask(self.task, self.task.id);
+		console.log(self.task.description);
+		console.log('Task updated with id ', self.task.id);
+		reset();
+	};
+	
+	//if edit button is click returns script edit else returns list of task 
+	$scope.getTemplate = function(task) {
+		if (task.id === self.task.id) {
+			return 'edit';
+		}
+		else return 'display'
+	}
+	
+	//function for deleting task
 	function deleteTask(id) {
 		TaskService.deleteTask(id)
 			.then(
@@ -45,52 +87,40 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 				}
 			);
 	}
-
-	function edit(id) {
-		console.log('id to be edited', id);
-		for (var i = 0; i < self.tasks.length; i++) {
-			if (self.tasks[i].id === id) {
-				self.task = angular.copy(self.tasks[i]);
-				break;
-			}
-		}
-	}
-
+	
+	//function to call delete function when button is pressed
 	function remove(id) {
 		console.log('id to be deleted', id);
 		let accept = confirm("Do you want to delete task?");
 		if (accept) {
 			deleteTask(id);
-		}else{
+		} else {
 			reset();
 		}
 
 	}
-
-	function submit() {
-		if (self.task.id === null) {
-			console.log('Saving New Task', self.task);
-			saveTask(self.task);
-		} 
-		if(self.task.id !== null){
-			updateTask(self.task, self.task.id);
-			console.log('Task updated with id ', self.task.id);
-		}
-		reset();
-	}
-
-	function reset() {
-		self.task = { id: null, description:'', dueDate: null };
-		$scope.taskForm.$setPristine();
-	}
 	
+	//sets attribute to false
 	$scope.showMe = false;
-	
-	$scope.showRemove = function(){
+
+	//if checkbox is selected, sets showme to true and makes delete button appear
+	$scope.showRemove = function() {
 		$scope.showMe = $scope.checkSelected;
 		console.log("checked task id:" + self.task.id)
 	}
 
+	//resets form on adding task 
+	function reset() {
+		self.task = { id: null, description: '', dueDate: null };
+		$scope.taskForm.$setPristine();
+	}
+
+	
+	
+
+	
+
+	
 
 
 
