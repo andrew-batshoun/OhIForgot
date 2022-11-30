@@ -13,9 +13,10 @@ angular.module('taskApp').factory('TaskService', ['$http', '$q', function($http,
 
 	return factory;
 
+	//list all tasks
 	function listTasks() {
 		var deferred = $q.defer();
-		$http.get(REST_SERVICE_URI + "tasklist").then(function(response) {
+		$http.get(REST_SERVICE_URI).then(function(response) {
 			deferred.resolve(response.data);
 		},
 			function(errResponse) {
@@ -25,9 +26,12 @@ angular.module('taskApp').factory('TaskService', ['$http', '$q', function($http,
 		return deferred.promise;
 	}
 
+	//create new task
 	function saveTask(task) {
 		var deferred = $q.defer();
+		console.log(task)
 		$http.post(REST_SERVICE_URI, task).then(function(response) {
+			
 			console.log('Task Saved ');
 			deferred.resolve(response.data);
 			
@@ -37,6 +41,7 @@ angular.module('taskApp').factory('TaskService', ['$http', '$q', function($http,
 		return deferred.promise;
 	}
 	
+	//update a task 
 	function updateTask(task, id) {
         var deferred = $q.defer();
         $http.put(REST_SERVICE_URI+id, task)
@@ -52,6 +57,7 @@ angular.module('taskApp').factory('TaskService', ['$http', '$q', function($http,
         return deferred.promise;
     }
     
+    //delete a task 
     function deleteTask(id) {
         var deferred = $q.defer();
         $http.delete(REST_SERVICE_URI+id)

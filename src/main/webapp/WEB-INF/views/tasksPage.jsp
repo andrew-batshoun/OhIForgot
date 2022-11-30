@@ -6,16 +6,20 @@
 
 <head>
 
-<tag:head />
+<tag:head /> <!-- tag for bootstrap and angular stylesheets -->
 
 <title>Task list</title>
 
 </head>
-<body ng-app="taskApp" class="ng-cloak">
 
-	<tag:navbar />
+<!-- Starts angular -->
+<body ng-app="taskApp" class="ng-cloak"> 
 
-	<div class="container" ng-controller="TasksController as ctrl" style="margin: 1em">
+	<tag:navbar /> <!-- tag for navbar -->
+
+	<!--div with ng controller   -->
+	<div class="container" ng-controller="TasksController as ctrl"
+		style="margin: 1em">  
 
 		<div class="panel panel-default">
 			<div class="panel-Heading">
@@ -34,10 +38,78 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="currentTask in ctrl.tasks">
-							<td><span ng-bind="currentTask.id"></span></td>
+						<!-- repeats tasks, uses template located below at scripts element  -->
+						<tr ng-repeat="currentTask in ctrl.tasks"   
+							ng-include="getTemplate(currentTask)"> 
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- Activates Model for adding a task, will not show when editing task -->
+			<input ng-show="!ctrl.task.id" class="btn btn-primary"
+				value="New Task" type="button" data-bs-toggle="collapse"
+				data-bs-target="#collapseCreateTask" aria-expanded="false"
+				aria-controls="collapseCreateTask">     
+
+		</div>
+		
+		<!--Model for adding task  -->
+		<div ng-show="!ctrl.task.id" class="collapse" id="collapseCreateTask">
+			<div class="card card-body">
+				<div class="panel panel-default">
+					
+					<!--Form for adding task in Model -->
+					<div class="formcontainer">
+						<form ng-submit="ctrl.submit()" name="taskForm"
+							class="form-horizontal">
+							<input type="hidden" ng-model="ctrl.task.id" />
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label class="col-md-2 control-lable" for="description">Description</label>
+									<div class="col-md-7">
+										<input type="text" ng-model="ctrl.task.description"
+											id="description" class=" form-control input-sm"
+											placeholder="Enter a task description" required />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label class="col-md-2 control-lable" for="date">Due
+										Date</label>
+									<div class="col-md-7">
+										<input type="date" ng-model="ctrl.task.dueDate" id="date"
+											class="form-control input-sm"
+											placeholder="Enter a due date. " />
+									</div>
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="form-actions floatRight">
+									<input type="submit" value="Add" class="btn btn-primary btn-sm">
+									<button type="button" ng-click="ctrl.reset()"
+										class="btn btn-warning btn-sm"
+										ng-disabled="taskForm.$pristine">Reset</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	
+	<!-- tag for bootstrap and angular scripts with footer title -->
+	<tag:footer></tag:footer>
+	
+	<!-- Script for showing task and for inline editing  -->
+	<script type="text/ng-template" id="display">
+	<td><span ng-bind="currentTask.id"></span></td>
 							<td><span ng-bind="currentTask.description"></span></td>
-							<td><span ng-bind="currentTask.dueDate"></span></td>
+							<td><span ng-bind="currentTask.dueDate | date:'MM/dd/yyyy'  "></span></td>
 							<td><input type="checkbox" ng-change="showRemove()"
 								ng-model="checkSelected"></td>
 							<td>
@@ -54,68 +126,27 @@
 								</div>
 
 							</td>
-
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<input class="btn btn-primary"
-				value="{{!ctrl.task.id ? 'New Task' : 'Update Task'}}" type="button"
-				data-bs-toggle="collapse" data-bs-target="#collapseCreateTask"
-				aria-expanded="false" aria-controls="collapseCreateTask">
-
-		</div>
-
-		<div class="collapse" id="collapseCreateTask">
-			<div class="card card-body">
-				<div class="panel panel-default">
-
-					<div class="formcontainer">
-						<form ng-submit="ctrl.submit()" name="taskForm"
-							class="form-horizontal">
-							<input type="hidden"  ng-model="ctrl.task.id" />
-							<div class="row">
-								<div class="form-group col-md-12">
-									<label class="col-md-2 control-lable" for="description">Description</label>
-									<div class="col-md-7">
-										<input type="text" ng-model="ctrl.task.description"
-											id="description" class=" form-control input-sm"
-											placeholder="Enter a task description" required
-											 />
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="form-group col-md-12">
-									<label class="col-md-2 control-lable" for="date">Due
-										Date</label>
-									<div class="col-md-7">
-										<input type="text" ng-model="ctrl.task.dueDate" id="date"
-											class="form-control input-sm"
-											placeholder="Enter a due date. " />
-									</div>
-								</div>
-							</div>
-							<br>
-							<div class="row">
-								<div class="form-actions floatRight">
-									<input type="submit"
-										value="{{ctrl.task.id ? 'Update' : 'Add'}}"
-										class="btn btn-primary btn-sm">
+	
+	</script>
+	<script type="text/ng-template" id="edit">
+	<td><span ng-bind="currentTask.id"></span></td>
+							<td><input ng-model="ctrl.task.description"/></td>
+							<td><input type ="date" ng-model="ctrl.task.dueDate"/></td>
+							<td><input type="checkbox" ng-change="showRemove()"
+								ng-model="checkSelected"></td>
+							<td>
+								
+							</td>
+							<td>
+								<div>
+									<button type="button" ng-click="updateSubmit()"
+										class="btn btn-danger custom-width">Save</button>
 									<button type="button" ng-click="ctrl.reset()"
-										class="btn btn-warning btn-sm"
-										ng-disabled="taskForm.$pristine">Reset</button>
+										class="btn btn-primary custom-width">Cancel</button>
 								</div>
-							</div>
-						</form>
-					</div>
-				</div>
 
-			</div>
-		</div>
-	</div>
-
-
-	<tag:footer></tag:footer>
+							</td>
+	
+	</script>
 </body>
 </html>
