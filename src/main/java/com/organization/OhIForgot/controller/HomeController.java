@@ -3,6 +3,8 @@ package com.organization.OhIForgot.controller;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,6 +39,11 @@ public class HomeController {
 	@GetMapping("/register")
 	public ModelAndView register() {
 		return new ModelAndView("register", "command", new User());
+	}
+	
+	@GetMapping("/profile/{id}")
+	public ModelAndView viewProfile(@PathVariable("id") Long id, @RequestBody User user) {
+		return new ModelAndView("profile", "command", user);
 	}
 	
 
