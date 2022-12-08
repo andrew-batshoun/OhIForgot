@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="/resources/css/login.css">
 </head>
 
-<body>
+<body ng-app="taskApp" class="ng-cloak">
 
 <!-- tag for navbar -->
 <tag:navbar/>
@@ -25,12 +25,12 @@
 	<div class="card text-center">
 	
 	<!-- Start of Login Form synchronous with backend no angular -->
-		<form class="form-signin" action="/login/" method="POST">
+		<form class="form-signin" ng-submit="login()">
 			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 			<label for="username" class="sr-only">Username</label> 
 			<input
 				id="username" name="username" type="text" class="form-control"
-				placeholder="Username" required autofocus /> 
+				placeholder="Username"  required autofocus /> 
 			<label for="password"
 				class="sr-only">Password</label> 
 			<input id="password"

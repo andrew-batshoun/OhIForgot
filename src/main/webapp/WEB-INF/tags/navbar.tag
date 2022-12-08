@@ -14,15 +14,19 @@
       </ul>
       <div class="d-flex">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item ">
+        <li class="nav-item" ng-show="!authenticated">
           <a class="nav-link active" aria-current="page" href="/login">Login</a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link active" aria-current="page" href="/profile">Edit Profile</a>
-        </li>
-        <li class="nav-item ">
+        <li class="nav-item" ng-show="!authenticated">
           <a class="nav-link active" href="/register">Sign Up</a>
         </li>
+        <li class="nav-item" ng-show="authenticated">
+          <a class="nav-link active" aria-current="page" href="" ng-click="logout()">Logout</a>
+        </li>
+        <li class="nav-item" ng-show="authenticated">
+          <a class="nav-link active" aria-current="page" href="/profile">Edit Profile</a>
+        </li>
+        </ul>
       </div>
     </div>
   </div>
