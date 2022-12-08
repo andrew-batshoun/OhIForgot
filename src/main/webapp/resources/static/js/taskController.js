@@ -55,6 +55,7 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 		for (const element of self.tasks) {
 			if (element.id === id) {
 				self.task = angular.copy(element);
+				$scope.ctrl.task.dueDate = new Date(self.task.dueDate);
 				break;
 			}
 		}

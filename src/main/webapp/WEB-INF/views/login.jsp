@@ -14,7 +14,7 @@
 
 <title>Log In</title>
 
-<link rel="stylesheet" href="/resources/login.css">
+<link rel="stylesheet" href="/resources/css/login.css">
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 <!-- tag for navbar -->
 <tag:navbar/>
 
-	<div class="text-center">
+	<div class="card text-center">
 	
 	<!-- Start of Login Form synchronous with backend no angular -->
 		<form class="form-signin" action="/login/" method="POST">

@@ -14,7 +14,7 @@
 
 <title>Register</title>
 
-<link rel="stylesheet" href="/resources/register.css">
+<link rel="stylesheet" href="/resources/css/register.css">
 </head>
 
 <!-- Start of angularjs -->
@@ -25,7 +25,7 @@
 	
 	<br>
 	
-	<div class ="reg-form"  ng-controller="RegisterController as ctrl"
+	<div class =" reg-form"  ng-controller="RegisterController as ctrl"
 		>
 		<h4>Create an Account</h4>
 		
@@ -77,27 +77,8 @@
 		</div>
 
 
-<!-- bootstrap -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-	crossorigin="anonymous"></script>
-
-<!-- angularjs library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
-
-<!-- Angular Material Library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
-
-	<script src="/resources/static/js/app.js"></script>
+<!-- Register controller and service  -->
+<tag:footer></tag:footer>
 	<script src="/resources/static/js/registerController.js"></script>
 	<script src="/resources/static/js/registerService.js"></script>
 </body>

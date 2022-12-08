@@ -6,20 +6,22 @@
 
 <head>
 
-<tag:head /> <!-- tag for bootstrap and angular stylesheets -->
+<tag:head />
+<!-- tag for bootstrap and angular stylesheets -->
 
 <title>Task list</title>
 
 </head>
 
 <!-- Starts angular -->
-<body ng-app="taskApp" class="ng-cloak"> 
+<body ng-app="taskApp" class="ng-cloak">
 
-	<tag:navbar /> <!-- tag for navbar -->
+	<tag:navbar />
+	<!-- tag for navbar -->
 
 	<!--div with ng controller   -->
 	<div class="container" ng-controller="TasksController as ctrl"
-		style="margin: 1em">  
+		style="margin: 1em">
 
 		<div class="panel panel-default">
 			<div class="panel-Heading">
@@ -39,8 +41,8 @@
 					</thead>
 					<tbody>
 						<!-- repeats tasks, uses template located below at scripts element  -->
-						<tr ng-repeat="currentTask in ctrl.tasks"   
-							ng-include="getTemplate(currentTask)"> 
+						<tr ng-repeat="currentTask in ctrl.tasks"
+							ng-include="getTemplate(currentTask)">
 
 						</tr>
 					</tbody>
@@ -50,15 +52,15 @@
 			<input ng-show="!ctrl.task.id" class="btn btn-primary"
 				value="New Task" type="button" data-bs-toggle="collapse"
 				data-bs-target="#collapseCreateTask" aria-expanded="false"
-				aria-controls="collapseCreateTask">     
+				aria-controls="collapseCreateTask">
 
 		</div>
-		
+
 		<!--Model for adding task  -->
 		<div ng-show="!ctrl.task.id" class="collapse" id="collapseCreateTask">
 			<div class="card card-body">
 				<div class="panel panel-default">
-					
+
 					<!--Form for adding task in Model -->
 					<div class="formcontainer">
 						<form ng-submit="ctrl.submit()" name="taskForm"
@@ -101,10 +103,14 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- tag for bootstrap and angular scripts with footer title -->
 	<tag:footer></tag:footer>
-	
+
+	<!-- angular controller and service for tasks -->
+	<script src="/resources/static/js/taskService.js"></script>
+	<script src="/resources/static/js/taskController.js"></script>
+
 	<!-- Script for showing task and for inline editing  -->
 	<script type="text/ng-template" id="display">
 	<td><span ng-bind="currentTask.id"></span></td>
@@ -131,7 +137,7 @@
 	<script type="text/ng-template" id="edit">
 	<td><span ng-bind="currentTask.id"></span></td>
 							<td><input ng-model="ctrl.task.description"/></td>
-							<td><input type ="date" ng-model="ctrl.task.dueDate"/></td>
+							<td><input type ="date" ng-model="ctrl.task.dueDate "/></td>
 							<td><input type="checkbox" ng-change="showRemove()"
 								ng-model="checkSelected"></td>
 							<td>
@@ -148,5 +154,7 @@
 							</td>
 	
 	</script>
+
+
 </body>
 </html>

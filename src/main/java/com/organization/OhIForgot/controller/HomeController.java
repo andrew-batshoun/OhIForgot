@@ -41,9 +41,14 @@ public class HomeController {
 		return new ModelAndView("register", "command", new User());
 	}
 	
-	@GetMapping("/profile/{id}")
-	public ModelAndView viewProfile(@PathVariable("id") Long id, @RequestBody User user) {
-		return new ModelAndView("profile", "command", user);
+//	@GetMapping("/profile")
+//	public ModelAndView viewProfile( @RequestBody User user) {
+//		return new ModelAndView("profile", "command", user);
+//	}
+	
+	@GetMapping("/profile")
+	public String viewProfile() {
+		return "profile";
 	}
 	
 
