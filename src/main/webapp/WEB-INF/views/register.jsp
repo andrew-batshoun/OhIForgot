@@ -25,7 +25,7 @@
 	
 	<br>
 	
-	<div class =" reg-form"  ng-controller="RegisterController as ctrl"
+	<div class =" reg-form"  ng-controller="AuthorizeController as ctrl"
 		>
 		<h4>Create an Account</h4>
 		
@@ -79,7 +79,7 @@
 
 <!-- Register controller and service  -->
 <tag:footer></tag:footer>
-	<script src="/resources/static/js/registerController.js"></script>
-	<script src="/resources/static/js/registerService.js"></script>
+	<script src="/resources/static/js/authController.js"></script>
+	<script src="/resources/static/js/authService.js"></script>
 </body>
 </html>
