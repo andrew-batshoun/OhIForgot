@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('taskApp').factory('UserService', ['$http', '$q', function($http, $q) {
+angular.module('taskApp').factory('ProfileService', ['$http', '$q', function($http, $q) {
 
 	var REST_SERVICE_URI = 'http://localhost:8080/api/profile';
 

@@ -36,7 +36,7 @@ public class HomeController {
 	}
 	
 	//shows register page
-	@GetMapping("/register")
+	@GetMapping("/signup")
 	public ModelAndView register() {
 		return new ModelAndView("register", "command", new User());
 	}

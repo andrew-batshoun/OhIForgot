@@ -1,5 +1,5 @@
 'use strict';
-angular.module('taskApp').controller('ProfileController', ['$scope', '$window', 'UserService', function($scope, $window, UserService) {
+angular.module('taskApp').controller('ProfileController', ['$scope', '$window', 'ProfileService', function($scope, $window, ProfileService) {
 	var self = this;
 	self.user = { id: null, email: '', username: '', password: '' };
 	self.users = [];
@@ -9,15 +9,7 @@ angular.module('taskApp').controller('ProfileController', ['$scope', '$window', 
 	self.remove = remove;
 	self.reset = reset;
 	
-	getUser(self.user.id);
 	
-	function getUser(id){
-		UserService.findById(id).then(function(data){
-			self.user = data; 
-		}, function(errResponse) {
-				console.error(errResponse + ':Error while fetching list');
-			});
-	}
 	
 	//calls update user function when form is submitted
 	function submit() {
@@ -26,7 +18,7 @@ angular.module('taskApp').controller('ProfileController', ['$scope', '$window', 
 	
 	//function to update user 	
 	function updateUser(user, id) {
-		UserService.updateUser(user, id)
+		ProfileService.updateUser(user, id)
 			.then(
 				toTasks,
 				function(errResponse) {
@@ -48,7 +40,7 @@ angular.module('taskApp').controller('ProfileController', ['$scope', '$window', 
 	
 	//function to delete user NOT APPLIED	
 	function deleteUser(id) {
-		UserService.deleteTask(id)
+		ProfileService.deleteTask(id)
 			.then(
 			 redirect,
 			function(errResponse) {
