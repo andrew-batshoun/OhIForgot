@@ -2,7 +2,7 @@
 
 angular.module('taskApp').factory('TaskService', ['$http', '$q', function($http, $q) {
 
-	var REST_SERVICE_URI = 'http://localhost:8081/tasks/';
+	var REST_SERVICE_URI = 'http://localhost:8080/api/tasks/';
 
 	var factory = {
 		listTasks: listTasks,

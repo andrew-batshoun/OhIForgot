@@ -2,7 +2,7 @@
 
 	<h3 class="mx-auto text-center"
 		style="width: 300px; color: blue; font-size: medium">Oh I FORGOT</h3>
-	
+
 
 
 </footer>
@@ -26,8 +26,7 @@
 <!-- Angular Material Library -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
-	
-<!-- app module, controller, and service -->	
+
+<!-- app module -->
 <script src="/resources/static/js/app.js"></script>
-<script src="/resources/static/js/taskService.js"></script>
-<script src="/resources/static/js/taskController.js"></script>
+
