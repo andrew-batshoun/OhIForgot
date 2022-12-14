@@ -8,7 +8,8 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 	self.edit = edit;
 	self.remove = remove;
 	self.reset = reset;
-	
+
+
 
 	//calls function for all tasks
 	listTasks();
@@ -22,22 +23,22 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 				console.error(errResponse + ':Error while fetching list');
 			});
 	}
-	
+
 	//function for saving a task 
 	function saveTask(task) {
 		return TaskService.saveTask(task).then(listTasks, function(errResponse) {
 			console.error(errResponse + ':Error while creating task');
 		});
 	}
-	
+
 	//calls save function when form is submitted
 	function submit() {
 
 		saveTask(self.task);
-		 
+
 		reset();
 	}
-	
+
 	//function for updating task 
 	function updateTask(task, id) {
 		TaskService.updateTask(task, id)
@@ -48,18 +49,19 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 				}
 			);
 	}
-	
+
 	//function to select task to edit
 	function edit(id) {
 		console.log('id to be edited', id);
 		for (const element of self.tasks) {
 			if (element.id === id) {
 				self.task = angular.copy(element);
+				//$scope.ctrl.task.dueDate = new Date(self.task.dueDate);
 				break;
 			}
 		}
 	}
-	
+
 	//function to call update function when button is clicked
 	$scope.updateSubmit = function() {
 		console.log(self.task.description)
@@ -68,7 +70,7 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 		console.log('Task updated with id ', self.task.id);
 		reset();
 	};
-	
+
 	//if edit button is click returns script edit else returns list of task 
 	$scope.getTemplate = function(task) {
 		if (task.id === self.task.id) {
@@ -76,7 +78,7 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 		}
 		else return 'display'
 	}
-	
+
 	//function for deleting task
 	function deleteTask(id) {
 		TaskService.deleteTask(id)
@@ -87,7 +89,7 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 				}
 			);
 	}
-	
+
 	//function to call delete function when button is pressed
 	function remove(id) {
 		console.log('id to be deleted', id);
@@ -99,7 +101,7 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 		}
 
 	}
-	
+
 	//sets attribute to false
 	$scope.showMe = false;
 
@@ -115,12 +117,12 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 		$scope.taskForm.$setPristine();
 	}
 
-	
-	
 
-	
 
-	
+
+
+
+
 
 
 

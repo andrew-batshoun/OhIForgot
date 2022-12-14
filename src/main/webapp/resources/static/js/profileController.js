@@ -1,5 +1,5 @@
 'use strict';
-angular.module('taskApp').controller('RegisterController', ['$scope', '$window', 'UserService', function($scope, $window, UserService) {
+angular.module('taskApp').controller('ProfileController', ['$scope', '$window', 'ProfileService', function($scope, $window, ProfileService) {
 	var self = this;
 	self.user = { id: null, email: '', username: '', password: '' };
 	self.users = [];
@@ -9,24 +9,18 @@ angular.module('taskApp').controller('RegisterController', ['$scope', '$window',
 	self.remove = remove;
 	self.reset = reset;
 	
-
-	//function to save user
-	function saveUser(user) {
-		return UserService.saveUser(user).then(redirect, function(errResponse) {
-			console.log(errResponse + ':Error while creating user');
-			
-		});
-	}
 	
-	//calls saveuser function when form is submitted
+	
+	//calls update user function when form is submitted
 	function submit() {
-		saveUser(self.user); 
+		updateUser(self.user, self.user.id); 
 	}
 	
-	//function to update user NOT APPLIED	
+	//function to update user 	
 	function updateUser(user, id) {
-		UserService.updateUser(user, id)
+		ProfileService.updateUser(user, id)
 			.then(
+				toTasks,
 				function(errResponse) {
 					console.error(errResponse + 'Error while updating user');
 				}
@@ -46,9 +40,9 @@ angular.module('taskApp').controller('RegisterController', ['$scope', '$window',
 	
 	//function to delete user NOT APPLIED	
 	function deleteUser(id) {
-		UserService.deleteTask(id)
+		ProfileService.deleteTask(id)
 			.then(
-			
+			 redirect,
 			function(errResponse) {
 				console.error(errResponse + 'Error while deleting user');
 				}
@@ -79,6 +73,10 @@ angular.module('taskApp').controller('RegisterController', ['$scope', '$window',
 		$window.location.href = url;
 	}
 	
+	function toTasks(){
+		var url = "/tasks"
+		$window.location.href = url; 
+	}
 
 
 
