@@ -10,7 +10,7 @@
 <!-- tag for bootstrap and angular stylesheets -->
 
 <title>Task list</title>
-
+<link rel="stylesheet" href="/resources/css/task.css">
 </head>
 
 <!-- Starts angular -->
@@ -90,7 +90,7 @@
 							<br>
 							<div class="row">
 								<div class="form-actions floatRight">
-									<input type="submit" value="Add" class="btn btn-primary btn-sm">
+									<input type="submit" value="Add" class="btn btn-primary btn-sm" ng-disabled= "taskForm.ctrl.task.description.$touched && taskForm.ctrl.task.description.$invalid">
 									<button type="button" ng-click="ctrl.reset()"
 										class="btn btn-warning btn-sm"
 										ng-disabled="taskForm.$pristine">Reset</button>

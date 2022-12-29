@@ -25,15 +25,18 @@
 	<div class="card text-center" ng-controller="AuthController as auth">
 
 		<!-- Start of Login Form synchronous with backend no angular -->
-		<form class="form-signin" ng-submit="auth.loginSubmit()">
+		<form name="loginForm" class="form-signin" ng-submit="auth.loginSubmit()">
 			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-			<label for="username" class="sr-only">Username</label> <input
+			<label for="username" class="sr-only">Username</label> 
+			<input
 				id="username" name="username" ng-model="username" type="text"
-				class="form-control" placeholder="Username" required autofocus /> <label
-				for="password" class="sr-only">Password</label> <input id="password"
+				class="form-control" placeholder="Username" required autofocus /> 
+			<label
+				for="password" class="sr-only">Password</label> 
+			<input id="password"
 				name="password" ng-model="password" type="password"
 				class="form-control" placeholder="Password" required />
-			<button class="btn btn-lg btn-info btn-block" type="submit">Sign
+			<button class="btn btn-lg btn-info btn-block" id="submitLogin" type="submit">Sign
 				in</button>
 
 

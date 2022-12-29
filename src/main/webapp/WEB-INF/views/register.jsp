@@ -70,7 +70,7 @@
 							<br>
 							<div class="row">
 								<div class="form-actions floatRight">
-									<input type="submit" value="Sign up" class="btn btn-primary btn-sm">	
+									<input type="submit"  id="submitUser" value="Sign up" class="btn btn-primary btn-sm">	
 								</div>
 							</div>
 						</form>
