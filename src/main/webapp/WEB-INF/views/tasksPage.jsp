@@ -10,7 +10,6 @@
 <!-- tag for bootstrap and angular stylesheets -->
 
 <title>Task list</title>
-<link rel="stylesheet" href="/resources/css/task.css">
 </head>
 
 <!-- Starts angular -->
@@ -49,7 +48,7 @@
 				</table>
 			</div>
 			<!-- Activates Model for adding a task, will not show when editing task -->
-			<input ng-show="!ctrl.task.id" class="btn btn-primary"
+			<input ng-show="!ctrl.task.id" class="btn btn-primary" id="addTask"
 				value="New Task" type="button" data-bs-toggle="collapse"
 				data-bs-target="#collapseCreateTask" aria-expanded="false"
 				aria-controls="collapseCreateTask">
@@ -90,7 +89,8 @@
 							<br>
 							<div class="row">
 								<div class="form-actions floatRight">
-									<input type="submit" value="Add" class="btn btn-primary btn-sm" ng-disabled= "taskForm.ctrl.task.description.$touched && taskForm.ctrl.task.description.$invalid">
+									<input type="submit" id="submitTask" value="Add"
+										class="btn btn-primary btn-sm">
 									<button type="button" ng-click="ctrl.reset()"
 										class="btn btn-warning btn-sm"
 										ng-disabled="taskForm.$pristine">Reset</button>
@@ -114,21 +114,21 @@
 	<!-- Script for showing task and for inline editing  -->
 	<script type="text/ng-template" id="display">
 	<td><span ng-bind="currentTask.id"></span></td>
-							<td><span ng-bind="currentTask.description"></span></td>
-							<td><span ng-bind="currentTask.dueDate | date:'MM/dd/yyyy'  "></span></td>
+							<td><span id="description-{{$index}}" ng-bind="currentTask.description"></span></td>
+							<td><span id="date-{{$index}}" ng-bind="currentTask.dueDate | date:'MM/dd/yyyy'  "></span></td>
 							<td><input type="checkbox" ng-change="showRemove()"
-								ng-model="checkSelected"></td>
+								ng-model="checkSelected" id="checkBox-{{$index}}"></td>
 							<td>
 
 								<div ng-show="checkSelected">
 									<button type="button" ng-click="ctrl.remove(currentTask.id)"
-										class="btn btn-danger custom-width">Remove</button>
+										class="btn btn-danger custom-width" id="removeTask-{{$index}}">Remove</button>
 								</div>
 							</td>
 							<td>
 								<div>
 									<button type="button" ng-click="ctrl.edit(currentTask.id)"
-										class="btn btn-success custom-width">Edit</button>
+										class="btn btn-success custom-width" id="editTask-{{$index}}" >Edit</button>
 								</div>
 
 							</td>
@@ -136,8 +136,8 @@
 	</script>
 	<script type="text/ng-template" id="edit">
 	<td><span ng-bind="currentTask.id"></span></td>
-							<td><input ng-model="ctrl.task.description"/></td>
-							<td><input type ="date" ng-model="ctrl.task.dueDate "/></td>
+							<td><input id="descriptionEdit-{{$index}}" ng-model="ctrl.task.description" required/><span ng-show="ctrl.task.description.$invalid && ctrl.task.description.$touched" style="color: red">Please Enter a Description</span></td>
+							<td><input id="dateEdit-{{$index}}" type ="date" ng-model="ctrl.task.dueDate "/></td>
 							<td><input type="checkbox" ng-change="showRemove()"
 								ng-model="checkSelected"></td>
 							<td>
@@ -146,9 +146,9 @@
 							<td>
 								<div>
 									<button type="button" ng-click="updateSubmit()"
-										class="btn btn-danger custom-width">Save</button>
+										class="btn btn-danger custom-width" id="submitEdit-{{$index}}" ng-disabled="ctrl.task.description.$invalid">Save</button>
 									<button type="button" ng-click="ctrl.reset()"
-										class="btn btn-primary custom-width">Cancel</button>
+										class="btn btn-primary custom-width" id="cancelEdit-{{$index}}">Cancel</button>
 								</div>
 
 							</td>

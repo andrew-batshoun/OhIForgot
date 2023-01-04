@@ -7,21 +7,21 @@ angular.module('taskApp').controller('AuthController', ['$scope', '$window', 'Au
 	self.loginSubmit = loginSubmit;
 	self.submit = submit;
 	self.reset = reset;
+	
+	
 
 	//login function 
 	function login(user) {
-
+	
 		return AuthService.login(user).then(function(data) {
 			console.log(data);
-			if (user.username === data.username) {
-				toTasks();
-			} else {
-				redirect();
+			toTasks();
+				
 			}
 
 		}, function(errResponse) {
 			console.error(errResponse + 'Error logging in');
-
+			
 		}
 		);
 
