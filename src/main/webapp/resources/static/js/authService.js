@@ -29,12 +29,13 @@ angular.module('taskApp').factory('AuthService', ['$http', '$q', '$window', func
 		}
 		console.log(req);
 		$http(req).then(function(response) {
-			console.log(response.data);
 			deferred.resolve(response.data);
+			
 		},
 			function(errResponse) {
 				console.error('Error while Loggin in');
 				deferred.reject(errResponse);
+				
 			});
 		return deferred.promise;
 	}

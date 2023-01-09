@@ -23,6 +23,7 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 				console.error(errResponse + ':Error while fetching list');
 			});
 	}
+	
 
 	//function for saving a task 
 	function saveTask(task) {
