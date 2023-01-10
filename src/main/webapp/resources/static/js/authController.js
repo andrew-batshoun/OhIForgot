@@ -1,5 +1,5 @@
 'use strict';
-angular.module('taskApp').controller('AuthController', ['$scope', '$window', 'AuthService', function($scope, $window, AuthService) {
+angular.module('taskApp').controller('AuthController', ['$scope', '$window', '$location', 'AuthService', function($scope, $window, $location, AuthService,  ) {
 	var self = this;
 	self.user = { id: null, email: '', username: '', password: '' };
 	self.users = [];
@@ -7,25 +7,26 @@ angular.module('taskApp').controller('AuthController', ['$scope', '$window', 'Au
 	self.loginSubmit = loginSubmit;
 	self.submit = submit;
 	self.reset = reset;
+	
+	
 
 	//login function 
 	function login(user) {
-
+	
 		return AuthService.login(user).then(function(data) {
 			console.log(data);
-			if (user.username === data.username) {
-				toTasks();
-			} else {
-				redirect();
-			}
+			toTasks();
+			
 
 		}, function(errResponse) {
 			console.error(errResponse + 'Error logging in');
-
+			redirect();
 		}
 		);
 
+
 	}
+	
 
 	//calls login function
 	function loginSubmit() {
@@ -43,7 +44,13 @@ angular.module('taskApp').controller('AuthController', ['$scope', '$window', 'Au
 
 	//function to save user
 	function saveUser(user) {
-		return AuthService.saveUser(user).then(redirect, function(errResponse) {
+		
+		return AuthService.saveUser(user).then(function(data) {
+			console.log(data);
+			redirect(); 
+			
+
+		}, function(errResponse) {
 			console.log(errResponse + ':Error while creating user');
 
 		});
@@ -52,6 +59,7 @@ angular.module('taskApp').controller('AuthController', ['$scope', '$window', 'Au
 	//calls saveuser function when form is submitted
 	function submit() {
 		saveUser(self.user);
+		
 	}
 
 
@@ -64,13 +72,13 @@ angular.module('taskApp').controller('AuthController', ['$scope', '$window', 'Au
 
 	//function to redirect to login, called in saveuser
 	function redirect() {
-		var url = "/login";
+		var url = "http://localhost:8081/login";
 		$window.location.href = url;
 	}
 
 	//function to redirect to login, called in saveuser
 	function toTasks() {
-		var url = "/tasks";
+		var url = "http://localhost:8081/tasks";
 		$window.location.href = url;
 	}
 

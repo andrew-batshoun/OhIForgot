@@ -24,9 +24,9 @@ public class HomeController {
 	}
 	
 	//shows task page 
-	@RequestMapping(value = "/tasks", method = RequestMethod.GET )
-	public ModelAndView task() {
-		return new ModelAndView("tasksPage", "command", new Task());
+	@GetMapping( "tasks")
+	public String task() {
+		return "tasksPage";
 	}
 	
 	//shows login page
@@ -37,8 +37,8 @@ public class HomeController {
 	
 	//shows register page
 	@GetMapping("/signup")
-	public ModelAndView register() {
-		return new ModelAndView("register", "command", new User());
+	public String register() {
+		return "register";
 	}
 	
 //	@GetMapping("/profile")
