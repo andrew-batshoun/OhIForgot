@@ -9,7 +9,7 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 	self.remove = remove;
 	self.reset = reset;
 
-
+	
 
 	//calls function for all tasks
 	listTasks();
@@ -23,6 +23,7 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 				console.error(errResponse + ':Error while fetching list');
 			});
 	}
+	
 
 	//function for saving a task 
 	function saveTask(task) {
@@ -68,6 +69,7 @@ angular.module('taskApp').controller('TasksController', ['$scope', 'TaskService'
 		updateTask(self.task, self.task.id);
 		console.log(self.task.description);
 		console.log('Task updated with id ', self.task.id);
+		
 		reset();
 	};
 
