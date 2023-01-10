@@ -1,5 +1,5 @@
 'use strict';
-angular.module('taskApp').controller('AuthController', ['$scope', '$window', '$location',  'AuthService', function($scope, $window, AuthService, $location, ) {
+angular.module('taskApp').controller('AuthController', ['$scope', '$window', '$location', 'AuthService', function($scope, $window, $location, AuthService,  ) {
 	var self = this;
 	self.user = { id: null, email: '', username: '', password: '' };
 	self.users = [];
@@ -15,7 +15,7 @@ angular.module('taskApp').controller('AuthController', ['$scope', '$window', '$l
 	
 		return AuthService.login(user).then(function(data) {
 			console.log(data);
-			toTask();
+			toTasks();
 			
 
 		}, function(errResponse) {
@@ -44,6 +44,7 @@ angular.module('taskApp').controller('AuthController', ['$scope', '$window', '$l
 
 	//function to save user
 	function saveUser(user) {
+		
 		return AuthService.saveUser(user).then(function(data) {
 			console.log(data);
 			redirect(); 
