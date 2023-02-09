@@ -23,8 +23,8 @@ public class TasksController {
 	private TaskService taskService;
 
 	@RequestMapping(value = "/tasks", method = RequestMethod.GET)
-	public ModelAndView task() {
-		return new ModelAndView("tasksPage", "command", new Task());
+	public String task() {
+		return "tasksPage";
 	}
 
 	@RequestMapping(value = "/tasks/tasklist", method = RequestMethod.GET)

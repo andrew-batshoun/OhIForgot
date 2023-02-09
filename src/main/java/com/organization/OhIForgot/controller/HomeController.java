@@ -17,7 +17,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String loginPage(Model model) {
-		model.addAttribute("message", "Please Enter your login");
+		model.addAttribute("message", "Please  your login");
 		return "login";
 	}
 
